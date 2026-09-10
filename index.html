@@ -195,7 +195,7 @@ section{position:relative}
 .hero__refletor{
   position:absolute;top:-34%;left:-22%;width:72vw;height:170%;z-index:0;pointer-events:none;
   background:radial-gradient(closest-side,rgba(242,160,61,.22),rgba(242,160,61,.06) 46%,transparent 74%);
-  filter:blur(6px);animation:refletor-varre 24s ease-in-out infinite;
+  will-change:transform,opacity;animation:refletor-varre 24s ease-in-out infinite;
 }
 @keyframes refletor-varre{
   0%{transform:translateX(0) rotate(-7deg);opacity:.5}
@@ -205,7 +205,7 @@ section{position:relative}
 .hero__bruma{
   position:absolute;left:50%;bottom:-30%;width:130vw;height:80vh;transform:translateX(-50%);z-index:0;pointer-events:none;
   background:radial-gradient(ellipse at 50% 100%,rgba(96,58,140,.55),rgba(42,30,56,.25) 45%,transparent 72%);
-  animation:luz-respira 9.5s ease-in-out infinite;
+  will-change:transform,opacity;animation:luz-respira 9.5s ease-in-out infinite;
 }
 @keyframes luz-respira{
   0%,100%{opacity:.55;transform:translateX(-50%) scale(1)}
@@ -334,6 +334,11 @@ section{position:relative}
   display:inline-block;margin-bottom:12px;padding:5px 11px;border-radius:2px;
   background:var(--ambar);color:var(--tinta);
   font-size:10.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
+  position:relative;
+}
+.poster__badge::after{
+  content:'';position:absolute;inset:0;border-radius:2px;pointer-events:none;
+  box-shadow:0 0 0 2px rgba(242,160,61,.65);
   animation:badge-pisca 2.8s ease-out infinite;
 }
 @keyframes entra-poster{
@@ -345,8 +350,8 @@ section{position:relative}
   animation-delay:var(--d,0s);
 }
 @keyframes badge-pisca{
-  0%{box-shadow:0 0 0 0 rgba(242,160,61,.5)}
-  70%,100%{box-shadow:0 0 0 10px rgba(242,160,61,0)}
+  0%{opacity:.75;transform:scale(1)}
+  70%,100%{opacity:0;transform:scale(1.32)}
 }
 .poster__nome{font-family:'Unbounded',sans-serif;font-weight:600;font-size:clamp(1.25rem,3.4vw,1.75rem);letter-spacing:-.015em;margin:0 0 8px}
 .poster__local{color:var(--mudo);font-size:14.5px;margin:0}
@@ -440,7 +445,7 @@ section{position:relative}
 /* --- MARCAS ----------------------------------------------------------- */
 .marcas{padding:clamp(46px,7vw,74px) 0;border-top:1px solid var(--linha);border-bottom:1px solid var(--linha);overflow:hidden}
 .marcas__tit{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:var(--mudo);margin-bottom:26px}
-.marcas__pista{display:flex;width:max-content;animation:marquee-marcas 38s linear infinite}
+.marcas__pista{display:flex;width:max-content;will-change:transform;animation:marquee-marcas 38s linear infinite}
 .marcas__pista:hover{animation-play-state:paused}
 .marcas__set{display:flex;align-items:center;flex-shrink:0}
 .marcas__set span{
@@ -534,6 +539,9 @@ section{position:relative}
   .passado a{margin-left:0}
 }
 
+/* animacao so roda enquanto o bloco esta na tela */
+[data-anim].fora,[data-anim].fora *{animation-play-state:paused}
+
 /* ==========================================================================
    08 · MOVIMENTO REDUZIDO
    ========================================================================== */
@@ -581,7 +589,7 @@ html{scroll-behavior:smooth}
           roxa/âmbar, 1600x900px, no lugar desta ==>
      ========================================================================== -->
 <main id="topo">
-<section class="hero">
+<section class="hero" data-anim>
   <div class="hero__foto" aria-hidden="true">
     <img src="img/hero-rs-1600.webp"
          srcset="img/hero-rs-900.webp 900w, img/hero-rs-1600.webp 1600w"
@@ -630,7 +638,7 @@ html{scroll-behavior:smooth}
     <!-- IMAGEM 2 — cartaz oficial do BLACKOUT (arte do próprio evento) -->
     <div class="blackout">
       <figure class="blackout__arte" data-reveal>
-        <img src="img/blackout-iv.webp" decoding="async" alt="Cartaz do show: Fernando Rosa Presents BLACKOUT. 27 de agosto, quinta, às 21h. Abertura da casa às 19h. Local: Red Star, Rua Teodoro Sampaio, 512, com estacionamento no local, a 5 minutos do metrô Clínicas." loading="lazy" width="739" height="1120">
+        <img src="img/blackout-iv-420.webp" srcset="img/blackout-iv-420.webp 420w, img/blackout-iv.webp 739w" sizes="(max-width:768px) 88vw, 30vw" decoding="async" alt="Cartaz do show: Fernando Rosa Presents BLACKOUT. 27 de agosto, quinta, às 21h. Abertura da casa às 19h. Local: Red Star, Rua Teodoro Sampaio, 512, com estacionamento no local, a 5 minutos do metrô Clínicas." loading="lazy" width="739" height="1120">
         <figcaption>Cartaz da edição anterior. A data da próxima sai primeiro no Instagram.</figcaption>
       </figure>
       <div class="blackout__texto" data-reveal>
@@ -651,7 +659,7 @@ html{scroll-behavior:smooth}
 </section>
 
 <!-- divisor de cordas (usado só nas viradas que importam) -->
-<div class="divisor" aria-hidden="true">
+<div class="divisor" aria-hidden="true" data-anim>
   <div class="cordas">
     <div class="corda"></div><div class="corda"></div><div class="corda"></div><div class="corda"></div>
   </div>
@@ -743,7 +751,7 @@ html{scroll-behavior:smooth}
 </section>
 
 <!-- divisor de cordas -->
-<div class="divisor" aria-hidden="true">
+<div class="divisor" aria-hidden="true" data-anim>
   <div class="cordas">
     <div class="corda"></div><div class="corda"></div><div class="corda"></div><div class="corda"></div>
   </div>
@@ -753,7 +761,7 @@ html{scroll-behavior:smooth}
      06 · MARCAS
      <!== VALIDAR: quais parcerias são oficiais e podem ser listadas ==>
      ========================================================================== -->
-<section class="marcas">
+<section class="marcas" data-anim>
   <div class="wrap">
     <p class="marcas__tit" data-reveal>Marcas que andam com ele</p>
   </div>
@@ -926,6 +934,16 @@ document.body.classList.add('carregado');
 
   setTimeout(revelaTudo,3000);
   window.addEventListener('load',function(){ setTimeout(revelaTudo,1200); });
+})();
+
+/* ---- pausa a animacao do bloco que saiu da tela --------------------------- */
+(function(){
+  var alvos = document.querySelectorAll('[data-anim]');
+  if(!alvos.length || !('IntersectionObserver' in window)) return;
+  var io = new IntersectionObserver(function(es){
+    es.forEach(function(e){ e.target.classList.toggle('fora', !e.isIntersecting); });
+  },{rootMargin:'100px'});
+  for(var i=0;i<alvos.length;i++){ io.observe(alvos[i]); }
 })();
 
 /* ---- nav: sombra ao rolar + menu mobile ----------------------------------- */

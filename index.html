@@ -1,0 +1,1135 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Fernando Rosa — baixista | site oficial</title>
+<meta name="description" content="Site oficial de Fernando Rosa, baixista. Agenda do BLACKOUT, o show que é dele, e contato de booking para palco, participação e gravação.">
+<meta name="theme-color" content="#120E16">
+
+<!-- OPENGRAPH / TWITTER -->
+<meta property="og:type" content="profile">
+<meta property="og:site_name" content="Fernando Rosa">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:title" content="Fernando Rosa — baixista | site oficial">
+<meta property="og:description" content="Groove de corpo e alma. De Itaquera para a estrada com Lenny Kravitz.">
+<meta property="og:url" content="https://fernando-rosa.vercel.app/">
+<meta property="og:image" content="https://fernando-rosa.vercel.app/og.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Fernando Rosa, baixista. Site oficial.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Fernando Rosa — baixista | site oficial">
+<meta name="twitter:description" content="Groove de corpo e alma. De Itaquera para a estrada com Lenny Kravitz.">
+<meta name="twitter:image" content="https://fernando-rosa.vercel.app/og.jpg">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="favicon.svg">
+<link rel="canonical" href="https://fernando-rosa.vercel.app/">
+
+<script>document.documentElement.classList.add('js')</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700&family=Unbounded:wght@600;800&display=swap" rel="stylesheet">
+
+<style>
+/* ==========================================================================
+   00 · TOKENS
+   ========================================================================== */
+:root{
+  --palco:#120E16;   /* fundo dominante */
+  --roxo:#2A1E38;    /* superfícies e cards */
+  --ambar:#F2A03D;   /* EXCLUSIVO de botões e datas */
+  --claro:#F4EFE7;   /* texto */
+  --mudo:#A79BB5;    /* texto secundário */
+  --tinta:#14100A;   /* texto sobre âmbar */
+  --linha:rgba(244,239,231,.13);
+  --linha-forte:rgba(244,239,231,.26);
+  --nav-h:64px;
+  --max:1180px;
+  --gut:clamp(20px,5vw,64px);
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--palco);color:var(--claro);
+  font-family:'Archivo',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  font-size:17px;line-height:1.62;font-weight:400;
+  overflow-x:hidden;-webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;display:block}
+a{color:inherit}
+h1,h2,h3{font-family:'Unbounded','Archivo',system-ui,sans-serif;font-weight:800;line-height:.98;letter-spacing:-.02em;margin:0}
+p{margin:0 0 1em}
+section{position:relative}
+[id]{scroll-margin-top:calc(var(--nav-h) + 18px)}
+::selection{background:var(--ambar);color:var(--tinta)}
+:focus-visible{outline:2px solid var(--ambar);outline-offset:3px;border-radius:2px}
+
+.wrap{max-width:var(--max);margin:0 auto;padding-left:var(--gut);padding-right:var(--gut)}
+.eyebrow{font-size:11px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:var(--mudo);margin:0 0 14px}
+.mono{font-family:ui-monospace,'SFMono-Regular',Menlo,Consolas,monospace}
+
+/* ==========================================================================
+   01 · AS 4 CORDAS  (E · A · D · G) — assinatura visual do site
+   ========================================================================== */
+.cordas{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:1}
+.corda{
+  position:absolute;left:0;right:0;height:1px;transform-origin:center;
+  background:linear-gradient(90deg,transparent 0%,rgba(244,239,231,.35) 8%,rgba(242,160,61,.85) 50%,rgba(244,239,231,.35) 92%,transparent 100%);
+  animation:corda-vibra var(--dur) ease-in-out infinite;will-change:transform;
+}
+.corda::before{
+  content:var(--nota);position:absolute;left:9px;top:50%;transform:translateY(-50%);
+  font-family:ui-monospace,Menlo,Consolas,monospace;font-size:10px;letter-spacing:.2em;
+  color:var(--mudo);opacity:.85;
+}
+.hero .corda:nth-child(1){top:30%;height:2.5px;--amp:2px;--dur:2.7s;--nota:'E';opacity:.85}
+.hero .corda:nth-child(2){top:44%;height:1.9px;--amp:1.6px;--dur:2.05s;--nota:'A';opacity:.75}
+.hero .corda:nth-child(3){top:59%;height:1.4px;--amp:1.2px;--dur:1.5s;--nota:'D';opacity:.65}
+.hero .corda:nth-child(4){top:73%;height:1px;--amp:.8px;--dur:1.1s;--nota:'G';opacity:.55}
+
+/* divisor: as mesmas 4 cordas, usadas com parcimônia entre blocos */
+.divisor{position:relative;height:74px;margin:0}
+.divisor .corda:nth-child(1){top:26%;height:2px;--amp:1.4px;--dur:3.1s;--nota:'';opacity:.6}
+.divisor .corda:nth-child(2){top:42%;height:1.5px;--amp:1.1px;--dur:2.3s;--nota:'';opacity:.5}
+.divisor .corda:nth-child(3){top:58%;height:1.2px;--amp:.9px;--dur:1.7s;--nota:'';opacity:.4}
+.divisor .corda:nth-child(4){top:74%;height:1px;--amp:.6px;--dur:1.25s;--nota:'';opacity:.32}
+
+@keyframes corda-vibra{
+  0%,100%{transform:translateY(calc(var(--amp) * -1)) scaleY(1)}
+  50%{transform:translateY(var(--amp)) scaleY(2.1)}
+}
+
+/* ==========================================================================
+   02 · BOTÕES
+   ========================================================================== */
+.btn{
+  position:relative;display:inline-flex;align-items:center;justify-content:center;gap:.6em;
+  min-height:52px;padding:15px 28px;border-radius:2px;text-decoration:none;overflow:hidden;
+  font-weight:700;font-size:14px;letter-spacing:.06em;text-transform:uppercase;
+  transition:transform .12s ease,background .25s ease,border-color .25s ease,color .25s ease;
+  border:1px solid transparent;cursor:pointer;
+}
+.btn:active{transform:scale(.97)}
+.btn--ambar{background:var(--ambar);color:var(--tinta)}
+.btn--ambar:hover{background:#ffb457}
+.btn--linha{border-color:var(--linha-forte);color:var(--claro);background:transparent}
+.btn--linha:hover{border-color:var(--claro);background:rgba(244,239,231,.06)}
+.btn--full{width:100%}
+.btn--sm{min-height:48px;padding:12px 20px;font-size:12.5px}
+
+/* brilho âmbar percorrendo o botão de ingresso a cada 8s */
+.btn--ingresso::after{
+  content:'';position:absolute;top:-20%;left:0;width:36%;height:140%;
+  background:linear-gradient(100deg,transparent,rgba(255,255,255,.6),transparent);
+  transform:translateX(-180%) skewX(-18deg);
+  animation:brilho-botao 8s ease-in-out infinite;pointer-events:none;
+}
+@keyframes brilho-botao{
+  0%,74%{transform:translateX(-180%) skewX(-18deg)}
+  88%,100%{transform:translateX(420%) skewX(-18deg)}
+}
+
+/* ==========================================================================
+   03 · NAV
+   ========================================================================== */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:60;height:var(--nav-h);
+  display:flex;align-items:center;
+  background:rgba(18,14,22,.72);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  border-bottom:1px solid transparent;transition:border-color .3s ease,background .3s ease;
+}
+.nav.is-scrolled{border-bottom-color:var(--linha);background:rgba(18,14,22,.9)}
+.nav__in{display:flex;align-items:center;justify-content:space-between;gap:18px;width:100%;max-width:var(--max);margin:0 auto;padding:0 var(--gut)}
+.nav__logo{font-family:'Unbounded',sans-serif;font-weight:600;font-size:14px;letter-spacing:.1em;text-decoration:none;white-space:nowrap;padding:13px 0}
+.nav__logo b{font-weight:800}
+.nav__links{display:flex;align-items:center;gap:26px}
+.nav__links a{
+  position:relative;text-decoration:none;font-size:13.5px;font-weight:600;color:var(--mudo);
+  padding:6px 0;transition:color .25s ease;
+}
+.nav__links a:hover{color:var(--claro)}
+.nav__links a::after{
+  content:'';position:absolute;left:0;right:0;bottom:0;height:1.5px;
+  background:linear-gradient(90deg,var(--ambar),rgba(242,160,61,.25));
+  transform:scaleX(0);transform-origin:left;
+}
+.nav__links a:hover::after,.nav__links a:focus-visible::after{animation:corda-underline .5s cubic-bezier(.2,.8,.2,1) forwards}
+@keyframes corda-underline{
+  0%{transform:scaleX(0) translateY(0)}
+  55%{transform:scaleX(1) translateY(2px)}
+  78%{transform:scaleX(1) translateY(-1.5px)}
+  100%{transform:scaleX(1) translateY(0)}
+}
+.nav__toggle{display:none;background:none;border:1px solid var(--linha-forte);color:var(--claro);border-radius:2px;min-height:44px;padding:9px 14px;font:700 12px/1 'Archivo',sans-serif;letter-spacing:.14em;text-transform:uppercase}
+.nav__panel{display:none}
+
+/* ==========================================================================
+   04 · HERO
+   ========================================================================== */
+.hero{
+  position:relative;min-height:100svh;display:flex;align-items:flex-end;
+  padding:calc(var(--nav-h) + 90px) 0 68px;overflow:hidden;
+  background:linear-gradient(165deg,#120E16 0%,#2A1E38 70%,#120E16 100%);
+}
+/* IMAGEM 1 — placeholder CSS do hero (feixes de refletor + bruma de palco) */
+.hero__refletor{
+  position:absolute;top:-34%;left:-22%;width:72vw;height:170%;z-index:0;pointer-events:none;
+  background:radial-gradient(closest-side,rgba(242,160,61,.22),rgba(242,160,61,.06) 46%,transparent 74%);
+  filter:blur(6px);animation:refletor-varre 24s ease-in-out infinite;will-change:transform,opacity;
+}
+@keyframes refletor-varre{
+  0%{transform:translateX(0) rotate(-7deg);opacity:.5}
+  50%{transform:translateX(62vw) rotate(7deg);opacity:.95}
+  100%{transform:translateX(0) rotate(-7deg);opacity:.5}
+}
+.hero__bruma{
+  position:absolute;left:50%;bottom:-30%;width:130vw;height:80vh;transform:translateX(-50%);z-index:0;pointer-events:none;
+  background:radial-gradient(ellipse at 50% 100%,rgba(96,58,140,.55),rgba(42,30,56,.25) 45%,transparent 72%);
+  animation:luz-respira 9.5s ease-in-out infinite;will-change:opacity,transform;
+}
+@keyframes luz-respira{
+  0%,100%{opacity:.55;transform:translateX(-50%) scale(1)}
+  50%{opacity:.9;transform:translateX(-50%) scale(1.07)}
+}
+.hero__grao{
+  position:absolute;inset:0;z-index:1;pointer-events:none;opacity:.5;
+  background-image:repeating-linear-gradient(0deg,rgba(255,255,255,.022) 0 1px,transparent 1px 3px);
+}
+.hero__in{position:relative;z-index:3;width:100%;max-width:var(--max);margin:0 auto;padding:0 var(--gut)}
+.hero__tag{
+  display:inline-flex;align-items:center;gap:10px;font-size:11px;font-weight:700;letter-spacing:.26em;
+  text-transform:uppercase;color:var(--mudo);margin-bottom:26px;
+}
+.hero__tag i{display:block;width:26px;height:1px;background:var(--ambar);font-style:normal}
+.hero h1{
+  font-size:clamp(2.9rem,10.5vw,7.4rem);max-width:14ch;
+  text-shadow:0 6px 40px rgba(18,14,22,.75);margin-bottom:26px;
+}
+.hero__sub{
+  font-size:clamp(1.02rem,2.1vw,1.28rem);color:var(--claro);max-width:46ch;margin-bottom:34px;
+  text-shadow:0 2px 18px rgba(18,14,22,.8);
+}
+.hero__sub b{font-weight:600}
+.hero__acoes{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.hero__contagem{
+  margin-top:26px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:12px;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--mudo);
+}
+.hero__contagem strong{color:var(--ambar);font-weight:700}
+/* entrada do hero (não depende de scroll, para não penalizar o LCP) */
+.js .entrada{opacity:0;transform:translateY(18px)}
+.carregado .entrada{opacity:1;transform:none;transition:opacity .8s ease,transform .8s cubic-bezier(.16,1,.3,1)}
+.carregado .entrada:nth-of-type(2){transition-delay:.08s}
+.carregado .hero__sub{transition-delay:.14s}
+.carregado .hero__acoes{transition-delay:.22s}
+.carregado .hero__contagem{transition-delay:.3s}
+
+/* foto real no hero (Marcos Hermes) — fica atrás das cordas e do texto */
+.hero__foto{position:absolute;inset:0;z-index:0;overflow:hidden}
+.hero__foto img{width:100%;height:100%;object-fit:cover;object-position:58% 32%;opacity:.55;filter:saturate(.72) contrast(1.06)}
+.hero__foto::after{
+  content:'';position:absolute;inset:0;
+  background:
+    linear-gradient(97deg,#120E16 3%,rgba(18,14,22,.92) 32%,rgba(18,14,22,.4) 70%,rgba(18,14,22,.66) 100%),
+    linear-gradient(0deg,#120E16 3%,rgba(18,14,22,.2) 40%,transparent 65%);
+}
+
+/* bloco do BLACKOUT: cartaz oficial + o que é o show */
+.blackout{display:grid;grid-template-columns:minmax(0,.72fr) minmax(0,1fr);gap:clamp(24px,4vw,60px);align-items:center;margin-top:clamp(52px,7vw,86px)}
+.blackout__arte{margin:0;border:1px solid var(--linha);border-radius:3px;overflow:hidden;box-shadow:0 34px 70px -40px #000;transform:rotate(-.6deg)}
+.blackout__arte img{width:100%;height:auto}
+.blackout__texto h3{font-size:clamp(2rem,5.6vw,3.2rem);margin:0 0 18px}
+.blackout__texto p{max-width:46ch}
+.blackout__texto>p:first-of-type{font-size:clamp(1.04rem,2.1vw,1.2rem)}
+
+/* faixa full-bleed com foto real */
+.faixa-foto{position:relative;overflow:hidden;background:var(--palco);border-top:1px solid var(--linha);border-bottom:1px solid var(--linha)}
+.faixa-foto img{display:block;width:100%;height:clamp(220px,34vw,420px);object-fit:cover;object-position:center 40%;filter:grayscale(1) contrast(1.3) brightness(.46)}
+.faixa-foto::before{
+  content:'';position:absolute;z-index:1;inset:0;pointer-events:none;
+  background:linear-gradient(112deg,rgba(122,74,196,.3) 0%,rgba(158,92,70,.2) 52%,rgba(242,160,61,.28) 100%);
+}
+.faixa-foto::after{
+  content:'';position:absolute;z-index:1;inset:0;pointer-events:none;
+  background:radial-gradient(104% 120% at 50% 42%,transparent 46%,rgba(18,14,22,.94) 100%);
+}
+.faixa-foto figcaption{
+  position:absolute;z-index:3;left:0;right:0;bottom:0;padding:14px clamp(20px,5vw,64px);
+  background:linear-gradient(0deg,rgba(18,14,22,.92),transparent);
+  font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--mudo);
+}
+
+/* a frase do Lenny Kravitz */
+.depo{border-top:1px solid var(--linha);border-bottom:1px solid var(--linha);padding:clamp(52px,8vw,96px) 0}
+.depo blockquote{margin:0;max-width:min(100%,760px)}
+.depo p{font-size:clamp(1.16rem,3vw,1.72rem);line-height:1.34;font-style:italic;margin:0 0 22px}
+.depo cite{display:block;font-style:normal;font-family:'Unbounded',sans-serif;font-weight:600;font-size:15px;letter-spacing:-.01em}
+.depo small{display:block;margin-top:8px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--mudo)}
+
+/* ==========================================================================
+   05 · REVEAL
+   ========================================================================== */
+.js [data-reveal]{opacity:0;transform:translateY(24px);transition:opacity .75s ease,transform .75s cubic-bezier(.16,1,.3,1)}
+.js [data-reveal].is-visible{opacity:1;transform:none}
+
+/* ==========================================================================
+   06 · SEÇÕES / BLOCOS
+   ========================================================================== */
+.bloco{padding:clamp(74px,11vw,132px) 0}
+.bloco--roxo{background:linear-gradient(180deg,var(--palco),#1B1424 40%,var(--palco))}
+
+/* --- AGENDA ---------------------------------------------------------- */
+.agenda__topo{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:14px;margin-bottom:44px}
+.agenda__topo h2{font-size:clamp(2.1rem,6vw,3.6rem)}
+.agenda__status{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--mudo)}
+.agenda__status strong{color:var(--ambar);font-weight:700;display:inline-block;animation:pulso-contagem 4.2s ease-in-out infinite}
+@keyframes pulso-contagem{
+  0%,100%{transform:scale(1);opacity:1}
+  42%{transform:scale(1.09);opacity:.72}
+}
+
+.posteres{display:flex;flex-direction:column;gap:26px}
+.poster{
+  position:relative;display:grid;grid-template-columns:minmax(120px,168px) 1fr auto;gap:clamp(18px,3vw,40px);
+  align-items:center;padding:clamp(22px,3.4vw,34px);
+  background:linear-gradient(140deg,#2E2140,#241A31);
+  border:1px solid var(--linha);border-radius:3px;
+  box-shadow:0 22px 50px -34px #000;
+  transform:rotate(var(--rot,0deg));
+}
+.poster:nth-child(odd){--rot:-.45deg;margin-right:clamp(0px,2vw,26px)}
+.poster:nth-child(even){--rot:.35deg;margin-left:clamp(0px,3vw,44px)}
+.poster--destaque{
+  background:linear-gradient(140deg,#372550,#241A31 62%);
+  border-color:rgba(242,160,61,.4);box-shadow:0 30px 70px -38px rgba(242,160,61,.55),0 22px 50px -34px #000;
+}
+.poster__data{font-family:'Unbounded',sans-serif;font-weight:800;color:var(--ambar);line-height:.82}
+.poster__dia{display:block;font-size:clamp(3.2rem,9vw,5rem);letter-spacing:-.045em}
+.poster__mes{display:block;font-size:clamp(.86rem,2.2vw,1.05rem);letter-spacing:.18em;text-transform:uppercase;margin-top:10px}
+.poster__ano{display:block;font-family:ui-monospace,Menlo,Consolas,monospace;font-weight:400;font-size:11px;letter-spacing:.22em;color:var(--mudo);margin-top:7px}
+.poster__corpo{min-width:0}
+.poster__badge{
+  display:inline-block;margin-bottom:12px;padding:5px 11px;border-radius:2px;
+  background:var(--ambar);color:var(--tinta);
+  font-size:10.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
+  animation:badge-pisca 2.8s ease-out infinite;
+}
+@keyframes badge-pisca{
+  0%{box-shadow:0 0 0 0 rgba(242,160,61,.5)}
+  70%,100%{box-shadow:0 0 0 10px rgba(242,160,61,0)}
+}
+.poster__nome{font-family:'Unbounded',sans-serif;font-weight:600;font-size:clamp(1.25rem,3.4vw,1.75rem);letter-spacing:-.015em;margin:0 0 8px}
+.poster__local{color:var(--mudo);font-size:14.5px;margin:0}
+.poster__acao{display:flex;flex-direction:column;align-items:flex-end;gap:9px;text-align:right}
+.poster__falta{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--mudo)}
+.poster--tba{background:linear-gradient(140deg,#241A31,#1C1427);border-style:dashed;border-color:var(--linha-forte)}
+.poster--tba .poster__dia{font-size:clamp(2.1rem,5.4vw,2.9rem);color:var(--mudo)}
+.poster--tba .poster__mes{color:var(--mudo);line-height:1.3;max-width:12ch}
+
+.passados{margin-top:52px;padding-top:30px;border-top:1px solid var(--linha)}
+.passados__tit{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--mudo);margin-bottom:18px}
+.passado{
+  display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 16px;padding:13px 0;
+  border-bottom:1px solid var(--linha);opacity:.42;transition:opacity .3s ease;
+}
+.passado:hover{opacity:.72}
+.passado__data{font-family:'Unbounded',sans-serif;font-weight:800;font-size:15px;letter-spacing:-.01em;min-width:96px}
+.passado__nome{font-weight:600;font-size:15px}
+.passado__local{color:var(--mudo);font-size:13.5px}
+.passado a{display:inline-block;margin-left:auto;padding:13px 0;font-size:12px;color:var(--mudo);text-decoration:underline;text-underline-offset:3px}
+
+/* --- PLACEHOLDERS DE IMAGEM ------------------------------------------ */
+.ph{
+  position:relative;margin:0;border:1px dashed var(--linha-forte);border-radius:3px;overflow:hidden;
+  background:
+    radial-gradient(120% 90% at 22% 8%,rgba(242,160,61,.16),transparent 58%),
+    radial-gradient(100% 80% at 82% 96%,rgba(96,58,140,.42),transparent 62%),
+    linear-gradient(155deg,#241A31,#160F1D);
+  display:flex;align-items:flex-end;
+}
+.ph::before{
+  content:'';position:absolute;inset:0;opacity:.55;
+  background-image:repeating-linear-gradient(0deg,rgba(255,255,255,.02) 0 1px,transparent 1px 4px);
+}
+.ph__marca{
+  position:relative;margin:14px;padding:7px 11px;border-radius:2px;
+  background:rgba(18,14,22,.72);border:1px solid var(--linha);
+  font-family:ui-monospace,Menlo,Consolas,monospace;font-size:10.5px;letter-spacing:.1em;
+  color:var(--mudo);text-transform:uppercase;
+}
+.ph--retrato{aspect-ratio:4/5}
+.ph--arte{aspect-ratio:4/5}
+.ph--palco{aspect-ratio:3/2}
+.ph--turne{aspect-ratio:16/7;width:100%}
+
+/* --- SOBRE ------------------------------------------------------------ */
+.citacao{margin:0 0 clamp(46px,7vw,78px)}
+.citacao__pt{
+  font-family:'Unbounded',sans-serif;font-weight:600;letter-spacing:-.02em;line-height:1.06;
+  font-size:clamp(1.6rem,5.4vw,3.05rem);max-width:20ch;margin:0 0 20px;
+}
+.citacao__en{font-size:15px;font-style:italic;color:var(--mudo);max-width:44ch;margin:0 0 16px}
+.citacao__quem{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--mudo)}
+
+.sobre__grid{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:clamp(28px,5vw,72px);align-items:start}
+.sobre__texto p{font-size:clamp(1.02rem,2vw,1.16rem);max-width:52ch}
+.sobre__texto p:first-of-type{font-size:clamp(1.12rem,2.4vw,1.32rem);color:var(--claro)}
+.ficha{margin:34px 0 0;border-top:1px solid var(--linha)}
+.ficha div{display:flex;gap:18px;padding:12px 0;border-bottom:1px solid var(--linha)}
+.ficha dt{flex:0 0 158px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--mudo);padding-top:4px}
+.ficha dd{margin:0;font-weight:600;font-size:15.5px}
+
+.nota{
+  margin-top:26px;padding:13px 15px;border:1px dashed rgba(242,160,61,.45);border-radius:2px;
+  background:rgba(242,160,61,.05);
+  font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11.5px;line-height:1.6;color:var(--mudo);
+}
+.nota b{color:var(--ambar);font-weight:700;letter-spacing:.1em}
+
+/* --- FAIXA DE TURNÊ --------------------------------------------------- */
+.faixa-turne{padding:0 0 clamp(74px,11vw,132px)}
+
+/* --- MÚSICA ----------------------------------------------------------- */
+.musica__topo{display:flex;flex-wrap:wrap;align-items:baseline;gap:16px;margin-bottom:38px}
+.musica__topo h2{font-size:clamp(2.1rem,6vw,3.6rem)}
+.musica__topo span{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--mudo)}
+.musica__grid{display:grid;grid-template-columns:1.35fr 1fr;grid-template-rows:auto auto;gap:18px}
+.faixa{
+  position:relative;display:flex;flex-direction:column;justify-content:flex-end;gap:8px;
+  padding:22px;min-height:180px;border-radius:3px;border:1px solid var(--linha);
+  background:linear-gradient(150deg,#2E2140,#1E1629);text-decoration:none;
+  transition:border-color .3s ease,transform .3s cubic-bezier(.16,1,.3,1);
+}
+.faixa:hover{border-color:var(--linha-forte);transform:translateY(-3px)}
+.faixa--grande{grid-row:span 2;min-height:380px;background:linear-gradient(150deg,#3A2653,#1E1629 70%)}
+.faixa__num{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:10.5px;letter-spacing:.24em;color:var(--mudo)}
+.faixa__nome{font-family:'Unbounded',sans-serif;font-weight:600;font-size:clamp(1.1rem,2.6vw,1.5rem);letter-spacing:-.015em}
+.faixa--grande .faixa__nome{font-size:clamp(1.4rem,3.6vw,2.1rem)}
+.faixa__slot{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:10.5px;letter-spacing:.1em;color:var(--mudo);border:1px dashed var(--linha-forte);border-radius:2px;padding:5px 9px;align-self:flex-start;margin-top:4px}
+
+/* --- MARCAS ----------------------------------------------------------- */
+.marcas{padding:clamp(46px,7vw,74px) 0;border-top:1px solid var(--linha);border-bottom:1px solid var(--linha);overflow:hidden}
+.marcas__tit{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:var(--mudo);margin-bottom:26px}
+.marcas__pista{display:flex;width:max-content;animation:marquee-marcas 38s linear infinite}
+.marcas__pista:hover{animation-play-state:paused}
+.marcas__set{display:flex;align-items:center;flex-shrink:0}
+.marcas__set span{
+  font-family:'Unbounded',sans-serif;font-weight:600;font-size:clamp(1.05rem,2.6vw,1.7rem);
+  letter-spacing:-.01em;color:var(--claro);opacity:.78;padding:0 clamp(20px,3.4vw,42px);white-space:nowrap;
+}
+.marcas__set i{display:block;width:5px;height:5px;border-radius:50%;background:var(--ambar);opacity:.7;flex-shrink:0}
+@keyframes marquee-marcas{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* --- BOOKING ---------------------------------------------------------- */
+.booking{background:linear-gradient(180deg,var(--palco),#1B1424)}
+.booking__grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(30px,5vw,72px);align-items:start}
+.booking h2{font-size:clamp(1.9rem,5.4vw,3.2rem);max-width:15ch;margin-bottom:14px}
+.booking__en{font-size:15.5px;font-style:italic;color:var(--mudo);max-width:36ch;margin:0 0 28px}
+.booking__lista{list-style:none;margin:0;padding:0;border-top:1px solid var(--linha)}
+.booking__lista li{display:flex;gap:16px;align-items:baseline;padding:15px 0;border-bottom:1px solid var(--linha)}
+.booking__lista b{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:10.5px;letter-spacing:.2em;color:var(--ambar);flex:0 0 26px}
+.booking__lista span{font-size:15.5px}
+.booking__lista i{display:block;font-style:normal;font-size:13.5px;color:var(--mudo);margin-top:2px}
+.booking__contato{display:flex;flex-direction:column;gap:11px;margin-top:30px}
+
+/* --- CTA FINAL / FOOTER ----------------------------------------------- */
+.final{text-align:left;padding:clamp(74px,11vw,132px) 0}
+.final h2{font-size:clamp(2.2rem,7vw,4.4rem);max-width:16ch;margin-bottom:30px}
+.final__acoes{display:flex;flex-wrap:wrap;gap:12px}
+
+.rodape{border-top:1px solid var(--linha);padding:44px 0 34px;font-size:14px;color:var(--mudo)}
+.rodape__grid{display:flex;flex-wrap:wrap;gap:26px 48px;justify-content:space-between;margin-bottom:32px}
+.rodape__col b{display:block;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--mudo);opacity:.7;margin-bottom:8px;font-weight:400}
+.rodape__col a{display:inline-block;color:var(--claro);text-decoration:none;font-weight:600;border-bottom:1px solid var(--linha-forte);padding:15px 0 5px}
+.rodape__col a:hover{border-bottom-color:var(--ambar)}
+.rodape__fim{display:flex;flex-wrap:wrap;gap:6px 20px;align-items:center;justify-content:space-between;padding-top:22px;border-top:1px solid var(--linha);font-size:12px}
+.site-credit{display:inline-block;font-size:11px;color:inherit;text-decoration:none;opacity:.3;letter-spacing:.02em;transition:opacity .3s ease;padding:6px 0}
+.site-credit:hover,.site-credit:focus-visible{opacity:.8}
+
+/* --- STICKY MOBILE ---------------------------------------------------- */
+.sticky{
+  position:fixed;left:0;right:0;bottom:0;z-index:70;display:none;
+  padding:10px 14px calc(10px + env(safe-area-inset-bottom));
+  background:rgba(18,14,22,.94);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border-top:1px solid var(--linha);
+  transform:translateY(110%);
+}
+.sticky.is-on{animation:sobe-sticky .45s cubic-bezier(.16,1,.3,1) forwards}
+@keyframes sobe-sticky{from{transform:translateY(110%)}to{transform:translateY(0)}}
+
+/* ==========================================================================
+   07 · RESPONSIVO
+   ========================================================================== */
+@media (max-width:1024px){
+  .sobre__grid{grid-template-columns:1fr;gap:34px}
+  .booking__grid{grid-template-columns:1fr;gap:38px}
+  .ph--retrato{max-width:420px}
+}
+@media (max-width:768px){
+  body{font-size:16px}
+  .nav__links{
+    position:absolute;top:var(--nav-h);left:0;right:0;flex-direction:column;align-items:stretch;gap:0;
+    background:rgba(18,14,22,.97);backdrop-filter:blur(16px);border-bottom:1px solid var(--linha);
+    padding:6px var(--gut) 18px;display:none;
+  }
+  .nav__links.is-open{display:flex}
+  .nav__links a{padding:15px 0;font-size:16px;border-bottom:1px solid var(--linha);color:var(--claro)}
+  .nav__toggle{display:inline-flex;align-items:center}
+  .nav .btn--ambar{display:none}
+  .hero{align-items:flex-end;padding-top:calc(var(--nav-h) + 70px)}
+  .hero .corda::before{display:none}
+  .hero .corda{left:0;right:0}
+  .musica__grid{grid-template-columns:1fr}
+  .ph--turne{aspect-ratio:5/4}
+  .blackout{grid-template-columns:1fr;gap:26px}
+  .blackout__arte{max-width:340px;transform:none}
+  .hero__foto img{object-position:56% 30%;opacity:.34}
+  .agenda__midia{grid-template-columns:1fr !important}
+  .faixa--grande{grid-row:auto;min-height:230px}
+  .poster{grid-template-columns:1fr;gap:16px;text-align:left}
+  .poster:nth-child(odd),.poster:nth-child(even){margin:0;--rot:0deg}
+  .poster__data{display:flex;align-items:baseline;gap:12px}
+  .poster__dia{font-size:3.4rem}
+  .poster__mes{margin-top:0}
+  .poster__ano{margin-top:0}
+  .poster__acao{align-items:stretch;text-align:left}
+  .poster__acao .btn{width:100%}
+  .sticky{display:block}
+  body.tem-sticky{padding-bottom:calc(84px + env(safe-area-inset-bottom))}
+  .final{text-align:left}
+}
+@media (max-width:480px){
+  .hero h1{font-size:clamp(2.5rem,12vw,3.4rem)}
+  .passado__data{min-width:100%}
+  .passado a{margin-left:0}
+}
+
+/* ==========================================================================
+   08 · MOVIMENTO REDUZIDO
+   ========================================================================== */
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{
+    animation-duration:.001ms !important;animation-iteration-count:1 !important;
+    transition-duration:.16s !important;scroll-behavior:auto !important;
+  }
+  .corda{animation:none;transform:none}
+  .hero__refletor,.hero__bruma{animation:none;opacity:.7}
+  .marcas__pista{animation:none;width:100%;justify-content:flex-start;flex-wrap:wrap}
+  .marcas__set:nth-child(2){display:none}
+  [data-reveal]{transform:none}
+  .entrada{transform:none}
+  .sticky.is-on{animation:none;transform:none}
+}
+html{scroll-behavior:smooth}
+</style>
+</head>
+<body>
+
+<!-- ==========================================================================
+     01 · NAV
+     ========================================================================== -->
+<header class="nav" id="nav">
+  <div class="nav__in">
+    <a class="nav__logo" href="#topo">FERNANDO <b>ROSA</b></a>
+    <nav class="nav__links" id="navLinks" aria-label="Navegação principal">
+      <a href="#shows">Shows</a>
+      <a href="#sobre">Sobre</a>
+      <a href="#musica">Música</a>
+      <a href="#booking">Booking</a>
+    </nav>
+    <button class="nav__toggle" id="navToggle" aria-expanded="false" aria-controls="navLinks">Menu</button>
+    <a class="btn btn--ambar btn--sm btn--ingresso" id="navCta" href="#shows">Ingressos</a>
+  </div>
+</header>
+
+<!-- ==========================================================================
+     02 · HERO — as 4 cordas vibrando atrás do texto
+     IMAGEM 1 · foto real de Marcos Hermes (Rolling Stone Brasil, 13/06/2025)
+     <!== VALIDAR: autorização de uso da foto com o fotógrafo/artista ==>
+     <!== SUBSTITUIR (melhor ainda): foto de show de corpo inteiro com luz
+          roxa/âmbar, 1600x900px, no lugar desta ==>
+     ========================================================================== -->
+<main id="topo">
+<section class="hero">
+  <div class="hero__foto" aria-hidden="true"><img src="img/hero-rs.jpg" alt="" width="1920" height="1080" fetchpriority="high"></div>
+  <div class="hero__bruma" aria-hidden="true"></div>
+  <div class="hero__refletor" aria-hidden="true"></div>
+  <div class="cordas" aria-hidden="true">
+    <div class="corda"></div>
+    <div class="corda"></div>
+    <div class="corda"></div>
+    <div class="corda"></div>
+  </div>
+  <div class="hero__grao" aria-hidden="true"></div>
+
+  <div class="hero__in">
+    <p class="hero__tag entrada"><i></i>Baixo · palco · estrada</p>
+    <h1 class="entrada">Groove de corpo e alma.</h1>
+    <p class="hero__sub entrada"><b>Fernando Rosa. Baixista.</b> De Itaquera, zona leste de São Paulo, para a estrada com Lenny Kravitz.</p>
+    <div class="hero__acoes entrada">
+      <a class="btn btn--ambar btn--ingresso" id="heroCta" href="#shows">Ver a agenda</a>
+      <a class="btn btn--linha" href="#booking">Booking</a>
+    </div>
+    <p class="hero__contagem entrada" id="heroContagem"></p>
+  </div>
+</section>
+
+<!-- ==========================================================================
+     03 · SHOWS — agenda em pôsteres empilhados, auto-atualizável
+     <!== VALIDAR: status da edição IV e as próximas datas ==>
+     ========================================================================== -->
+<section class="bloco bloco--roxo" id="shows">
+  <div class="wrap">
+    <div class="agenda__topo">
+      <h2 data-reveal>Agenda</h2>
+      <p class="agenda__status" id="agendaStatus" data-reveal></p>
+    </div>
+
+    <div class="posteres" id="posteres"></div>
+
+    <div class="passados" id="passados" hidden>
+      <p class="passados__tit">Já aconteceu</p>
+      <div id="passadosLista"></div>
+    </div>
+
+    <!-- IMAGEM 2 — cartaz oficial do BLACKOUT (arte do próprio evento) -->
+    <div class="blackout">
+      <figure class="blackout__arte" data-reveal>
+        <img src="img/blackout-iv.webp" alt="Cartaz do show BLACKOUT, de Fernando Rosa: retrato dele de black power e óculos redondos sobre lettering psicodélico" loading="lazy" width="739" height="1120">
+      </figure>
+      <div class="blackout__texto" data-reveal>
+        <p class="eyebrow">O show que é dele</p>
+        <h3>BLACKOUT</h3>
+        <!-- Texto do próprio evento, publicado na página de ingressos. VALIDAR redação final com o artista. -->
+        <p>Uma noite de muito groove, soul e energia. Fernando traz os clássicos que fizeram história na pista, num show envolvente, dançante e cheio de feeling.</p>
+        <p>Quando o groove começa, ninguém fica parado.</p>
+        <!-- IMAGEM 3 — foto de palco (ainda falta) -->
+        <figure class="ph ph--palco" data-reveal style="margin-top:24px">
+          <!-- SUBSTITUIR: foto de show, 1200x800px
+               <img src="img/palco-01.jpg" alt="Fernando Rosa tocando baixo no BLACKOUT" loading="lazy" width="1200" height="800"> -->
+          <figcaption class="ph__marca">Foto de palco · 1200x800</figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- divisor de cordas (usado só nas viradas que importam) -->
+<div class="divisor" aria-hidden="true">
+  <div class="cordas">
+    <div class="corda"></div><div class="corda"></div><div class="corda"></div><div class="corda"></div>
+  </div>
+</div>
+
+<!-- ==========================================================================
+     04 · SOBRE — abre pela frase dele, não por parágrafo de apresentação
+     ========================================================================== -->
+<section class="bloco" id="sobre">
+  <div class="wrap">
+    <blockquote class="citacao" data-reveal>
+      <p class="citacao__pt">“No palco a gente não toca apenas notas, a gente vive o momento de corpo e alma.”</p>
+      <p class="citacao__en" lang="en">“On stage, we don’t just play notes, we live the moment body and soul.”</p>
+      <p class="citacao__quem">Fernando Rosa</p>
+    </blockquote>
+
+    <div class="sobre__grid">
+      <!-- IMAGEM 4 — retrato de estúdio (foto real)
+           VALIDAR: crédito do fotógrafo e autorização de uso -->
+      <figure class="ph ph--retrato" data-reveal style="border-style:solid">
+        <img src="img/retrato-estudio.jpg" alt="Fernando Rosa sentado num estúdio, de jaqueta de couro, segurando o braço do contrabaixo" loading="lazy" width="769" height="708" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:52% 30%">
+      </figure>
+
+      <div class="sobre__texto" data-reveal>
+        <p>Ele aprendeu a gostar de música nos bailes de garagem de Itaquera, zona leste de São Paulo. Autodidata.</p>
+        <p>Na pandemia, abriu a câmera enquanto tocava em casa. O baixo saiu de casa e foi parar no mundo.</p>
+        <p>Já dividiu a estrada com Lenny Kravitz e tocou com ele no iHeartRadio Music Festival, em setembro de 2023, em <i lang="en">It Ain’t Over ’Til It’s Over</i>. Em junho de 2025 estreou o Funk Ship no Blue Note São Paulo, com Derrick McKenzie, baterista do Jamiroquai, de convidado. Quando o palco é só dele, o nome é BLACKOUT.</p>
+
+        <dl class="ficha">
+          <div><dt>Instrumento</dt><dd>Baixo. Music Man StingRay</dd></div>
+          <div><dt>Onde começou</dt><dd>Itaquera, zona leste de São Paulo</dd></div>
+          <div><dt>Com Lenny Kravitz</dt><dd>iHeartRadio Music Festival, 2023</dd></div>
+          <div><dt>Show solo</dt><dd>BLACKOUT</dd></div>
+          <div><dt>Vida</dt><dd>Vegan</dd></div>
+        </dl>
+
+        <!-- Tudo acima veio de fonte pública aberta e conferida: Bass Magazine,
+             No Treble, Ernie Ball Music Man, Rolling Stone Brasil, Terra.
+             SUBSTITUIR pela bio oficial quando o Fernando mandar a dele.
+             NÃO INVENTAR discografia nem outros artistas. Ficaram DE FORA de
+             propósito, por não terem confirmação dele: gravações para o disco
+             do Lenny Kravitz, Chemical Brothers, Ed Motta, Kell Smith, o
+             instrumento feito pela Fender e a idade em que começou a tocar. -->
+        <p class="nota"><b>A confirmar</b><br>Bio oficial completa. O texto acima usa só o que está publicado em fonte aberta e foi conferido na fonte. Assim que vier a bio dele, este bloco sai.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- IMAGEM 5 — faixa full-bleed: o StingRay da parceria com a Ernie Ball Music Man
+     <!== VALIDAR: autorização de uso da foto de divulgação ==> -->
+<figure class="faixa-foto" data-reveal>
+  <img src="img/stingray.jpg" alt="Fernando Rosa de perfil com o contrabaixo Music Man StingRay de corpo natural apoiado no ombro" loading="lazy" width="1200" height="500">
+  <figcaption>Artista oficial Ernie Ball Music Man</figcaption>
+</figure>
+
+<!-- ==========================================================================
+     05 · MÚSICA — grid assimétrico, sem iframe externo na prévia
+     <!== SUBSTITUIR: links reais de YouTube/Spotify ==>
+     ========================================================================== -->
+<section class="bloco" id="musica">
+  <div class="wrap">
+    <div class="musica__topo">
+      <h2 data-reveal>Ouvir</h2>
+      <span data-reveal>três faixas, o resto está no Instagram</span>
+    </div>
+    <div class="musica__grid">
+      <a class="faixa faixa--grande" data-reveal href="https://www.youtube.com/@FernandoRosaBass" target="_blank" rel="noopener" style="text-decoration:none">
+        <span class="faixa__num">01</span>
+        <span class="faixa__nome">Covers de groove</span>
+        <span class="faixa__slot" style="border-style:solid;color:var(--claro)">Canal no YouTube</span>
+      </a>
+      <div class="faixa" data-reveal>
+        <span class="faixa__num">02</span>
+        <span class="faixa__nome">BLACKOUT ao vivo</span>
+        <!-- SUBSTITUIR: link real do vídeo -->
+        <span class="faixa__slot">A confirmar: link do vídeo</span>
+      </div>
+      <div class="faixa" data-reveal>
+        <span class="faixa__num">03</span>
+        <span class="faixa__nome">Funk Ship</span>
+        <!-- SUBSTITUIR: link real. Estreou no Blue Note SP em 17/06/2025. -->
+        <span class="faixa__slot">A confirmar: link</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- divisor de cordas -->
+<div class="divisor" aria-hidden="true">
+  <div class="cordas">
+    <div class="corda"></div><div class="corda"></div><div class="corda"></div><div class="corda"></div>
+  </div>
+</div>
+
+<!-- ==========================================================================
+     06 · MARCAS
+     <!== VALIDAR: quais parcerias são oficiais e podem ser listadas ==>
+     ========================================================================== -->
+<section class="marcas">
+  <div class="wrap">
+    <p class="marcas__tit" data-reveal>Marcas que andam com ele</p>
+  </div>
+  <div class="marcas__pista" aria-label="Ernie Ball, Music Man, W Bass Cabinets, Soul Ears, Vakenelli, Mais Cabello">
+    <div class="marcas__set" aria-hidden="true">
+      <span>Ernie Ball</span><i></i><span>Music Man</span><i></i><span>W Bass Cabinets</span><i></i><span>Soul Ears</span><i></i><span>Vakenelli</span><i></i><span>Mais Cabello</span><i></i>
+    </div>
+    <div class="marcas__set" aria-hidden="true">
+      <span>Ernie Ball</span><i></i><span>Music Man</span><i></i><span>W Bass Cabinets</span><i></i><span>Soul Ears</span><i></i><span>Vakenelli</span><i></i><span>Mais Cabello</span><i></i>
+    </div>
+  </div>
+  <div class="wrap">
+    <!-- VALIDAR: quais parcerias são oficiais e podem ser listadas -->
+    <p class="nota" data-reveal style="max-width:60ch;margin-top:28px"><b>Confirmado</b><br>Ernie Ball e Music Man: ele está na página oficial de artistas da marca. As outras aparecem nos posts dele e ainda precisam de confirmação antes de virar parceria declarada aqui.</p>
+  </div>
+</section>
+
+<!-- ==========================================================================
+     07 · O QUE O LENNY KRAVITZ FALOU DELE
+     Redação EXATA da fonte. Não editar as aspas.
+     <!== VALIDAR: origem e autorização da frase com o artista ==>
+     ========================================================================== -->
+<section class="depo">
+  <div class="wrap">
+    <blockquote data-reveal>
+      <p lang="en">“What I love in Fernando’s bass performance is that he is versed in multiple styles and he plays with authenticity. He has a fantastic ability with his hands and most importantly he demonstrates love and joy for his passion for playing.”</p>
+      <cite>Lenny Kravitz</cite>
+      <small>declaração publicada pela Folha de Londrina</small>
+    </blockquote>
+  </div>
+</section>
+
+<!-- ==========================================================================
+     08 · BOOKING — bloco bilíngue PT/EN
+     <!== SUBSTITUIR: e-mail e WhatsApp reais de contratação ==>
+     ========================================================================== -->
+<section class="bloco booking" id="booking">
+  <div class="wrap">
+    <div class="booking__grid">
+      <div data-reveal>
+        <p class="eyebrow">Booking</p>
+        <h2>Leve esse groove pro seu palco.</h2>
+        <p class="booking__en" lang="en">Bring this groove to your stage.</p>
+        <div class="booking__contato">
+          <!-- SUBSTITUIR: mailto real -->
+          <a class="btn btn--ambar btn--full" id="bookingEmail" href="#booking" aria-disabled="true">A confirmar: e-mail de booking</a>
+          <!-- SUBSTITUIR: link wa.me real -->
+          <a class="btn btn--linha btn--full" id="bookingWhats" href="#booking" aria-disabled="true">A confirmar: WhatsApp</a>
+        </div>
+      </div>
+
+      <div data-reveal>
+        <ul class="booking__lista">
+          <li><b>01</b><span>Show solo BLACKOUT<i>o show dele, do começo ao fim</i></span></li>
+          <li><b>02</b><span>Participação<i>presença de baixo em show, evento ou festival</i></span></li>
+          <li><b>03</b><span>Gravação<i>baixo em estúdio ou remoto</i></span></li>
+        </ul>
+        <!-- VALIDAR: formatos reais de contratação com o artista/empresário -->
+        <p class="nota"><b>A confirmar</b><br>Os três formatos acima ainda precisam do aval do artista antes de virar oferta pública.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================================================
+     09 · CTA FINAL
+     ========================================================================== -->
+<section class="bloco final">
+  <div class="wrap">
+    <h2 id="finalTit" data-reveal>A próxima data sai primeiro no Instagram.</h2>
+    <div class="final__acoes" data-reveal>
+      <a class="btn btn--ambar btn--ingresso" id="finalCta" href="https://instagram.com/fernandorosabass" target="_blank" rel="noopener">Seguir no Instagram</a>
+      <a class="btn btn--linha" href="#shows">Ver a agenda</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ==========================================================================
+     10 · RODAPÉ
+     ========================================================================== -->
+<footer class="rodape">
+  <div class="wrap">
+    <div class="rodape__grid">
+      <div class="rodape__col" data-reveal>
+        <b>Instagram</b>
+        <a href="https://instagram.com/fernandorosabass" target="_blank" rel="noopener">@fernandorosabass</a>
+      </div>
+      <div class="rodape__col">
+        <b>Booking</b>
+        <span class="mono" style="font-size:12.5px">A confirmar: e-mail e WhatsApp</span>
+      </div>
+      <div class="rodape__col">
+        <b>Fotografia</b>
+        <!-- VALIDAR: autorização de uso de cada foto e a forma do crédito.
+             Fotos de show do BLACKOUT: @marques_alessandra (ainda não aplicadas). -->
+        <span style="font-size:13px">Marcos Hermes · divulgação Ernie&nbsp;Ball Music&nbsp;Man<br><span class="mono" style="font-size:11px">retrato de estúdio: crédito a confirmar</span></span>
+      </div>
+    </div>
+    <div class="rodape__fim">
+      <span>© <span id="ano">2026</span> Fernando Rosa. Todos os direitos reservados.</span>
+      <a href="https://www.instagram.com/baruc.amare/" target="_blank" rel="noopener" class="site-credit">feito por @baruc.amare</a>
+    </div>
+  </div>
+</footer>
+
+<!-- barra fixa no rodapé da tela, mobile -->
+<div class="sticky" id="sticky">
+  <a class="btn btn--ambar btn--full btn--ingresso" id="stickyCta" href="#shows">Ver a agenda</a>
+</div>
+
+<!-- Schema.org: Person + MusicGroup (Event é injetado a partir da agenda) -->
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@graph":[
+    {
+      "@type":["Person","MusicGroup"],
+      "@id":"https://fernando-rosa.vercel.app/#fernandorosa",
+      "name":"Fernando Rosa",
+      "alternateName":"@fernandorosabass",
+      "jobTitle":"Baixista",
+      "description":"Baixista brasileiro, de Itaquera, zona leste de São Paulo. Já dividiu a estrada com Lenny Kravitz, tocou com ele no iHeartRadio Music Festival em 2023 e é artista oficial da Ernie Ball Music Man. Assina o show solo BLACKOUT.",
+      "url":"https://fernando-rosa.vercel.app/",
+      "birthPlace":{"@type":"Place","name":"Itaquera, São Paulo, Brasil"},
+      "sameAs":[
+        "https://instagram.com/fernandorosabass",
+        "https://www.youtube.com/@FernandoRosaBass"
+      ],
+      "knowsAbout":["Baixo elétrico","Groove","Funk","Soul","Disco"],
+      "instrument":"Contrabaixo elétrico"
+    }
+  ]
+}
+</script>
+
+<script>
+/* ==========================================================================
+   AGENDA — ÚNICO LUGAR PARA EDITAR AS DATAS
+   Publicar um show novo: acrescente um objeto no topo do array SHOWS.
+     data  'AAAA-MM-DD'  (data real do show)
+     tba   true          (pôster de "data a confirmar", sem data inventada)
+     link  URL de ingressos (deixe vazio se ainda não abriu venda)
+   O site se vira sozinho a partir daqui: destaque, contagem regressiva,
+   texto dos botões, faixa de "já aconteceu" e o Schema.org de Event.
+   ========================================================================== */
+var SHOWS = [
+  {
+    nome:'BLACKOUT',
+    tba:true,
+    rotulo:'Próxima edição',
+    cidade:'',                 /* SUBSTITUIR quando confirmar */
+    casa:'',                   /* SUBSTITUIR quando confirmar */
+    link:''
+  }
+
+  /* A edição anterior NÃO entrou aqui de propósito. O cartaz oficial diz
+     "27/ago, quinta, às 21h" e não imprime o ANO, e 27/ago cai numa quinta
+     em 2015, 2020 e 2026. Publicar o ano seria inferência de calendário,
+     não fato. O link de ingressos daquela edição também saiu: a página da
+     101 Tickets responde "Esse evento não está disponível", e mandar fã pra
+     página de erro é pior do que não ter agenda.
+     Assim que o Fernando confirmar a próxima data, basta acrescentar:
+     { nome:'BLACKOUT', data:'AAAA-MM-DD', casa:'Red Star',
+       cidade:'São Paulo, SP', link:'<url de ingressos>' }
+     e o site inteiro acende sozinho: destaque, contagem regressiva, botões
+     de ingresso no topo, no rodapé e na barra do celular, e o Schema.org. */
+];
+
+var INSTAGRAM = 'https://instagram.com/fernandorosabass';
+var MESES = ['jan','fev','mar','abr','mai','jun','jul','ago','set','out','nov','dez'];
+
+/* ---- data de hoje em America/Sao_Paulo, sem depender do fuso do visitante -- */
+function hojeSP(){
+  try{
+    return new Intl.DateTimeFormat('en-CA',{timeZone:'America/Sao_Paulo',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date());
+  }catch(e){
+    var d=new Date();
+    return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+  }
+}
+function diasAte(iso){
+  return Math.round((Date.parse(iso+'T00:00:00Z') - Date.parse(hojeSP()+'T00:00:00Z'))/86400000);
+}
+function fmtFalta(d){
+  if(d===0) return 'é hoje';
+  if(d===1) return 'é amanhã';
+  return 'faltam '+d+' dias';
+}
+function esc(s){
+  return String(s==null?'':s).replace(/[&<>"']/g,function(c){
+    return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];
+  });
+}
+function local(s){
+  var p=[];
+  if(s.casa) p.push(s.casa);
+  if(s.cidade) p.push(s.cidade);
+  return p.length ? p.join(', ') : 'Local a confirmar';
+}
+
+/* ---- separa a agenda ------------------------------------------------------ */
+var datados = SHOWS.filter(function(s){ return s.data; });
+var futuros = datados.filter(function(s){ return diasAte(s.data) >= 0; })
+                     .sort(function(a,b){ return a.data < b.data ? -1 : 1; });
+var passados = datados.filter(function(s){ return diasAte(s.data) < 0; })
+                      .sort(function(a,b){ return a.data > b.data ? -1 : 1; });
+var tbas = SHOWS.filter(function(s){ return s.tba; });
+var destaque = futuros[0] || null;
+
+/* ---- pôsteres ------------------------------------------------------------- */
+var alvo = document.getElementById('posteres');
+var html = '';
+var idx = 0;
+
+futuros.forEach(function(s){
+  var d = diasAte(s.data);
+  var partes = s.data.split('-');
+  var eDestaque = (s === destaque);
+  html += '<article class="poster'+(eDestaque?' poster--destaque':'')+'" data-reveal style="--d:'+(idx*.09)+'s">'
+    + '<div class="poster__data"><span class="poster__dia">'+partes[2]+'</span>'
+    + '<span class="poster__mes">'+MESES[parseInt(partes[1],10)-1]+'</span>'
+    + '<span class="poster__ano">'+partes[0]+'</span></div>'
+    + '<div class="poster__corpo">'
+    + (eDestaque ? '<span class="poster__badge">Próximo show</span>' : '')
+    + '<h3 class="poster__nome">'+esc(s.nome)+'</h3>'
+    + '<p class="poster__local">'+esc(local(s))+'</p></div>'
+    + '<div class="poster__acao"><span class="poster__falta">'+fmtFalta(d)+'</span>'
+    + (s.link
+        ? '<a class="btn btn--ambar btn--sm btn--ingresso" href="'+esc(s.link)+'" target="_blank" rel="noopener">Ingressos</a>'
+        : '<span class="poster__falta">venda em breve</span>')
+    + '</div></article>';
+  idx++;
+});
+
+tbas.forEach(function(s){
+  html += '<article class="poster poster--tba" data-reveal style="--d:'+(idx*.09)+'s">'
+    + '<div class="poster__data"><span class="poster__dia">??</span>'
+    + '<span class="poster__mes">data a confirmar</span></div>'
+    + '<div class="poster__corpo"><h3 class="poster__nome">'+esc(s.nome)+(s.rotulo?' · '+esc(s.rotulo):'')+'</h3>'
+    + '<p class="poster__local">'+esc(local(s))+'</p></div>'
+    + '<div class="poster__acao"><span class="poster__falta">sai primeiro no Instagram</span>'
+    + '<a class="btn btn--linha btn--sm" href="'+INSTAGRAM+'" target="_blank" rel="noopener">Ser avisado</a>'
+    + '</div></article>';
+  idx++;
+});
+
+if(!html){
+  html = '<article class="poster poster--tba" data-reveal>'
+    + '<div class="poster__data"><span class="poster__dia">??</span><span class="poster__mes">em breve</span></div>'
+    + '<div class="poster__corpo"><h3 class="poster__nome">Novas datas em breve</h3>'
+    + '<p class="poster__local">A agenda entra aqui assim que fechar</p></div>'
+    + '<div class="poster__acao"><a class="btn btn--ambar btn--sm btn--ingresso" href="'+INSTAGRAM+'" target="_blank" rel="noopener">Seguir no Instagram</a></div></article>';
+}
+alvo.innerHTML = html;
+
+/* ---- faixa de shows que já aconteceram ------------------------------------ */
+if(passados.length){
+  var box = document.getElementById('passados');
+  box.hidden = false;
+  document.getElementById('passadosLista').innerHTML = passados.map(function(s){
+    var p = s.data.split('-');
+    return '<div class="passado"><span class="passado__data">'+p[2]+' '+MESES[parseInt(p[1],10)-1]+' '+p[0]+'</span>'
+      + '<span class="passado__nome">'+esc(s.nome)+'</span>'
+      + '<span class="passado__local">'+esc(local(s))+'</span>'
+      + (s.link ? '<a href="'+esc(s.link)+'" target="_blank" rel="noopener">página do evento</a>' : '')
+      + '</div>';
+  }).join('');
+}
+
+/* ---- estado dos CTAs: com show futuro vira ingresso, sem show vira Instagram */
+var heroCta = document.getElementById('heroCta');
+var navCta = document.getElementById('navCta');
+var stickyCta = document.getElementById('stickyCta');
+var finalCta = document.getElementById('finalCta');
+var elStatus = document.getElementById('agendaStatus');
+var contagem = document.getElementById('heroContagem');
+
+if(destaque){
+  var dias = diasAte(destaque.data);
+  var alvoLink = destaque.link || INSTAGRAM;
+
+  [heroCta, navCta, stickyCta].forEach(function(el){
+    if(!el) return;
+    el.setAttribute('href', alvoLink);
+    if(destaque.link){ el.setAttribute('target','_blank'); el.setAttribute('rel','noopener'); }
+  });
+  heroCta.textContent = 'Ingressos · ' + destaque.nome;
+  navCta.textContent = 'Ingressos';
+  stickyCta.textContent = 'Ingressos · próximo show';
+  finalCta.textContent = 'Ingressos · ' + destaque.nome;
+  finalCta.setAttribute('href', alvoLink);
+  if(destaque.link){ finalCta.setAttribute('target','_blank'); finalCta.setAttribute('rel','noopener'); }
+
+  document.getElementById('finalTit').textContent = 'O próximo show já tem data.';
+  elStatus.innerHTML = 'Próximo show · <strong>' + fmtFalta(dias) + '</strong>';
+  contagem.innerHTML = destaque.nome + ' · <strong>' + fmtFalta(dias) + '</strong>';
+}else{
+  elStatus.innerHTML = 'Novas datas · <strong>em breve</strong>';
+  contagem.innerHTML = 'Sem data aberta agora. A próxima cai <strong>primeiro no Instagram</strong>.';
+  heroCta.textContent = 'Ser avisado do próximo show';
+  heroCta.setAttribute('href', INSTAGRAM);
+  heroCta.setAttribute('target','_blank'); heroCta.setAttribute('rel','noopener');
+  navCta.textContent = 'Agenda';
+  stickyCta.textContent = 'Ser avisado do próximo show';
+  stickyCta.setAttribute('href', INSTAGRAM);
+  stickyCta.setAttribute('target','_blank'); stickyCta.setAttribute('rel','noopener');
+}
+
+/* ---- Schema.org Event, só para shows com data real ------------------------ */
+(function(){
+  var eventos = datados.map(function(s){
+    var e = {
+      "@type":"Event",
+      "name":s.nome,
+      "startDate":s.data,
+      "eventStatus":"https://schema.org/EventScheduled",
+      "eventAttendanceMode":"https://schema.org/OfflineEventAttendanceMode",
+      "performer":{"@id":"https://fernando-rosa.vercel.app/#fernandorosa"},
+      "organizer":{"@id":"https://fernando-rosa.vercel.app/#fernandorosa"}
+    };
+    if(s.link) e.url = s.link;
+    /* location só entra quando a casa/cidade estiver confirmada: nada inventado */
+    if(s.casa || s.cidade){
+      e.location = {"@type":"Place","name":s.casa || s.cidade};
+      if(s.cidade) e.location.address = {"@type":"PostalAddress","addressLocality":s.cidade,"addressCountry":"BR"};
+    }
+    return e;
+  });
+  if(!eventos.length) return;
+  var tag = document.createElement('script');
+  tag.type = 'application/ld+json';
+  tag.textContent = JSON.stringify({"@context":"https://schema.org","@graph":eventos});
+  document.head.appendChild(tag);
+})();
+
+/* ---- reveal por IntersectionObserver + failsafe de 3s --------------------- */
+(function(){
+  var itens = document.querySelectorAll('[data-reveal]');
+  if(!('IntersectionObserver' in window)){
+    itens.forEach(function(el){ el.classList.add('is-visible'); });
+    return;
+  }
+  var io = new IntersectionObserver(function(entradas){
+    entradas.forEach(function(e){
+      if(e.isIntersecting){ e.target.classList.add('is-visible'); io.unobserve(e.target); }
+    });
+  },{threshold:0.05,rootMargin:'0px 0px -15% 0px'});
+  itens.forEach(function(el){ io.observe(el); });
+
+  function revelaTudo(){
+    document.querySelectorAll('[data-reveal]:not(.is-visible)').forEach(function(el){
+      el.classList.add('is-visible');
+    });
+  }
+  setTimeout(revelaTudo,3000);
+  window.addEventListener('load',function(){ setTimeout(revelaTudo,1200); });
+})();
+
+/* ---- nav: sombra ao rolar + menu mobile ----------------------------------- */
+(function(){
+  var nav = document.getElementById('nav');
+  var toggle = document.getElementById('navToggle');
+  var links = document.getElementById('navLinks');
+  var tick = false;
+  window.addEventListener('scroll', function(){
+    if(tick) return; tick = true;
+    requestAnimationFrame(function(){
+      nav.classList.toggle('is-scrolled', window.scrollY > 24);
+      tick = false;
+    });
+  }, {passive:true});
+
+  toggle.addEventListener('click', function(){
+    var aberto = links.classList.toggle('is-open');
+    toggle.setAttribute('aria-expanded', aberto ? 'true' : 'false');
+    toggle.textContent = aberto ? 'Fechar' : 'Menu';
+  });
+  links.addEventListener('click', function(e){
+    if(e.target.tagName === 'A'){
+      links.classList.remove('is-open');
+      toggle.setAttribute('aria-expanded','false');
+      toggle.textContent = 'Menu';
+    }
+  });
+})();
+
+/* ---- barra fixa do mobile aparece depois do hero e não some mais ---------- */
+(function(){
+  var barra = document.getElementById('sticky');
+  var hero = document.querySelector('.hero');
+  function mostra(){
+    if(barra.classList.contains('is-on')) return;
+    barra.classList.add('is-on');
+    document.body.classList.add('tem-sticky');
+  }
+  if(!('IntersectionObserver' in window) || !hero){ mostra(); return; }
+  var io = new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(!e.isIntersecting) mostra(); });
+  },{threshold:0});
+  io.observe(hero);
+  /* rede de seguranca: se o observer nao acordar, o scroll resolve */
+  window.addEventListener('scroll', function(){
+    if(window.scrollY > window.innerHeight * 0.85) mostra();
+  }, {passive:true});
+})();
+
+/* ---- ano do rodapé + entrada do hero -------------------------------------- */
+document.getElementById('ano').textContent = new Date().getFullYear();
+requestAnimationFrame(function(){ document.body.classList.add('carregado'); });
+</script>
+</body>
+</html>

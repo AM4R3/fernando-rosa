@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://fernando-rosa.vercel.app/sitemap.xml

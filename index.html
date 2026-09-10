@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Fernando Rosa — baixista | site oficial</title>
+<title>Fernando Rosa · Baixista · Site oficial</title>
 <meta name="description" content="Site oficial de Fernando Rosa, baixista. Agenda do BLACKOUT, o show que é dele, e contato de booking para palco, participação e gravação.">
 <meta name="theme-color" content="#120E16">
 
@@ -11,8 +11,8 @@
 <meta property="og:type" content="profile">
 <meta property="og:site_name" content="Fernando Rosa">
 <meta property="og:locale" content="pt_BR">
-<meta property="og:title" content="Fernando Rosa — baixista | site oficial">
-<meta property="og:description" content="Groove de corpo e alma. De Itaquera para a estrada com Lenny Kravitz.">
+<meta property="og:title" content="Fernando Rosa · Baixista · Site oficial">
+<meta property="og:description" content="Groove de corpo e alma. De Itaquera, zona leste de São Paulo, para a estrada que já passou por Lenny Kravitz.">
 <meta property="og:url" content="https://fernando-rosa.vercel.app/">
 <meta property="og:image" content="https://fernando-rosa.vercel.app/og.jpg">
 <meta property="og:image:type" content="image/jpeg">
@@ -20,21 +20,29 @@
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Fernando Rosa, baixista. Site oficial.">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Fernando Rosa — baixista | site oficial">
-<meta name="twitter:description" content="Groove de corpo e alma. De Itaquera para a estrada com Lenny Kravitz.">
+<meta name="twitter:title" content="Fernando Rosa · Baixista · Site oficial">
+<meta name="twitter:description" content="Groove de corpo e alma. De Itaquera, zona leste de São Paulo, para a estrada que já passou por Lenny Kravitz.">
 <meta name="twitter:image" content="https://fernando-rosa.vercel.app/og.jpg">
+<meta name="twitter:image:alt" content="Fernando Rosa segurando um vinil, com a frase Groove de corpo e alma.">
+<meta property="profile:first_name" content="Fernando">
+<meta property="profile:last_name" content="Rosa">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
-<link rel="apple-touch-icon" href="favicon.svg">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="canonical" href="https://fernando-rosa.vercel.app/">
 
 <script>document.documentElement.classList.add('js')</script>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700&family=Unbounded:wght@600;800&display=swap" media="print" onload="this.media='all'">
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700&family=Unbounded:wght@600;800&display=swap"></noscript>
+<link rel="preload" as="font" type="font/woff2" href="fonts/archivo-latin.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="fonts/unbounded-latin.woff2" crossorigin>
 
 <style>
+/* ==========================================================================
+   00 · FONTES (hospedadas aqui, subset latin)
+   Archivo e Unbounded sao variaveis: um arquivo cobre toda a faixa de peso.
+   ========================================================================== */
+@font-face{font-family:'Archivo';font-style:normal;font-weight:400 700;font-display:swap;src:url(fonts/archivo-latin.woff2) format('woff2')}
+@font-face{font-family:'Unbounded';font-style:normal;font-weight:600 800;font-display:swap;src:url(fonts/unbounded-latin.woff2) format('woff2')}
+
 /* ==========================================================================
    00 · TOKENS
    ========================================================================== */
@@ -72,6 +80,7 @@ section{position:relative}
 .wrap{max-width:var(--max);margin:0 auto;padding-left:var(--gut);padding-right:var(--gut)}
 .eyebrow{font-size:11px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:var(--mudo);margin:0 0 14px}
 .mono{font-family:ui-monospace,'SFMono-Regular',Menlo,Consolas,monospace}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
 
 /* ==========================================================================
    01 · AS 4 CORDAS  (E · A · D · G) — assinatura visual do site
@@ -80,7 +89,7 @@ section{position:relative}
 .corda{
   position:absolute;left:0;right:0;height:1px;transform-origin:center;
   background:linear-gradient(90deg,transparent 0%,rgba(244,239,231,.35) 8%,rgba(242,160,61,.85) 50%,rgba(244,239,231,.35) 92%,transparent 100%);
-  animation:corda-vibra var(--dur) ease-in-out infinite;will-change:transform;
+  animation:corda-vibra var(--dur) ease-in-out infinite;
 }
 .corda::before{
   content:var(--nota);position:absolute;left:9px;top:50%;transform:translateY(-50%);
@@ -121,6 +130,12 @@ section{position:relative}
 .btn--linha:hover{border-color:var(--claro);background:rgba(244,239,231,.06)}
 .btn--full{width:100%}
 .btn--sm{min-height:48px;padding:12px 20px;font-size:12.5px}
+/* placeholder inerte: parece o que e, um lugar reservado, e nao um botao morto */
+.slot-contato{
+  display:block;padding:14px 18px;border:1px dashed var(--linha-forte);border-radius:2px;
+  font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11.5px;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--mudo);
+}
 
 /* brilho âmbar percorrendo o botão de ingresso a cada 8s */
 .btn--ingresso::after{
@@ -180,7 +195,7 @@ section{position:relative}
 .hero__refletor{
   position:absolute;top:-34%;left:-22%;width:72vw;height:170%;z-index:0;pointer-events:none;
   background:radial-gradient(closest-side,rgba(242,160,61,.22),rgba(242,160,61,.06) 46%,transparent 74%);
-  filter:blur(6px);animation:refletor-varre 24s ease-in-out infinite;will-change:transform,opacity;
+  filter:blur(6px);animation:refletor-varre 24s ease-in-out infinite;
 }
 @keyframes refletor-varre{
   0%{transform:translateX(0) rotate(-7deg);opacity:.5}
@@ -190,7 +205,7 @@ section{position:relative}
 .hero__bruma{
   position:absolute;left:50%;bottom:-30%;width:130vw;height:80vh;transform:translateX(-50%);z-index:0;pointer-events:none;
   background:radial-gradient(ellipse at 50% 100%,rgba(96,58,140,.55),rgba(42,30,56,.25) 45%,transparent 72%);
-  animation:luz-respira 9.5s ease-in-out infinite;will-change:opacity,transform;
+  animation:luz-respira 9.5s ease-in-out infinite;
 }
 @keyframes luz-respira{
   0%,100%{opacity:.55;transform:translateX(-50%) scale(1)}
@@ -243,6 +258,7 @@ section{position:relative}
 .blackout{display:grid;grid-template-columns:minmax(0,.72fr) minmax(0,1fr);gap:clamp(24px,4vw,60px);align-items:center;margin-top:clamp(52px,7vw,86px)}
 .blackout__arte{margin:0;border:1px solid var(--linha);border-radius:3px;overflow:hidden;box-shadow:0 34px 70px -40px #000;transform:rotate(-.6deg)}
 .blackout__arte img{width:100%;height:auto}
+.blackout__arte figcaption{padding:12px 14px;background:rgba(18,14,22,.55);border-top:1px solid var(--linha);font-family:ui-monospace,Menlo,Consolas,monospace;font-size:10.5px;line-height:1.55;letter-spacing:.06em;color:var(--mudo)}
 .blackout__texto h3{font-size:clamp(2rem,5.6vw,3.2rem);margin:0 0 18px}
 .blackout__texto p{max-width:46ch}
 .blackout__texto>p:first-of-type{font-size:clamp(1.04rem,2.1vw,1.2rem)}
@@ -260,12 +276,13 @@ section{position:relative}
 }
 .faixa-foto figcaption{
   position:absolute;z-index:3;left:0;right:0;bottom:0;padding:14px clamp(20px,5vw,64px);
-  background:linear-gradient(0deg,rgba(18,14,22,.92),transparent);
-  font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--mudo);
+  background:linear-gradient(0deg,rgba(18,14,22,.97) 0%,rgba(18,14,22,.9) 55%,rgba(18,14,22,.55) 82%,transparent 100%);
+  padding-top:34px;
+  font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--claro);
 }
 
 /* a frase do Lenny Kravitz */
-.depo{border-top:1px solid var(--linha);border-bottom:1px solid var(--linha);padding:clamp(52px,8vw,96px) 0}
+.depo{border-bottom:1px solid var(--linha);padding:clamp(52px,8vw,96px) 0}
 .depo blockquote{margin:0;max-width:min(100%,760px)}
 .depo p{font-size:clamp(1.16rem,3vw,1.72rem);line-height:1.34;font-style:italic;margin:0 0 22px}
 .depo cite{display:block;font-style:normal;font-family:'Unbounded',sans-serif;font-weight:600;font-size:15px;letter-spacing:-.01em}
@@ -318,6 +335,14 @@ section{position:relative}
   background:var(--ambar);color:var(--tinta);
   font-size:10.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
   animation:badge-pisca 2.8s ease-out infinite;
+}
+@keyframes entra-poster{
+  from{opacity:0;transform:translateY(26px) rotate(var(--rot,0deg))}
+  to{opacity:1;transform:translateY(0) rotate(var(--rot,0deg))}
+}
+.js .poster[data-reveal].is-visible{
+  animation:entra-poster .72s cubic-bezier(.16,1,.3,1) both;
+  animation-delay:var(--d,0s);
 }
 @keyframes badge-pisca{
   0%{box-shadow:0 0 0 0 rgba(242,160,61,.5)}
@@ -520,6 +545,7 @@ section{position:relative}
   .corda{animation:none;transform:none}
   .hero__refletor,.hero__bruma{animation:none;opacity:.7}
   .marcas__pista{animation:none;width:100%;justify-content:flex-start;flex-wrap:wrap}
+  .marcas__set{flex-wrap:wrap;justify-content:center}
   .marcas__set:nth-child(2){display:none}
   [data-reveal]{transform:none}
   .entrada{transform:none}
@@ -573,7 +599,7 @@ html{scroll-behavior:smooth}
 
   <div class="hero__in">
     <p class="hero__tag entrada"><i></i>Baixo · palco · estrada</p>
-    <h1 class="entrada">Groove de corpo e alma.</h1>
+    <h1>Groove de corpo e alma.</h1>
     <p class="hero__sub entrada"><b>Fernando Rosa. Baixista.</b> De Itaquera, zona leste de São Paulo, para a estrada com Lenny Kravitz.</p>
     <div class="hero__acoes entrada">
       <a class="btn btn--ambar btn--ingresso" id="heroCta" href="#shows">Ver a agenda</a>
@@ -604,7 +630,8 @@ html{scroll-behavior:smooth}
     <!-- IMAGEM 2 — cartaz oficial do BLACKOUT (arte do próprio evento) -->
     <div class="blackout">
       <figure class="blackout__arte" data-reveal>
-        <img src="img/blackout-iv.webp" decoding="async" alt="Cartaz do show BLACKOUT, de Fernando Rosa: retrato dele de black power e óculos redondos sobre lettering psicodélico" loading="lazy" width="739" height="1120">
+        <img src="img/blackout-iv.webp" decoding="async" alt="Cartaz do show: Fernando Rosa Presents BLACKOUT. 27 de agosto, quinta, às 21h. Abertura da casa às 19h. Local: Red Star, Rua Teodoro Sampaio, 512, com estacionamento no local, a 5 minutos do metrô Clínicas." loading="lazy" width="739" height="1120">
+        <figcaption>Cartaz da edição anterior. A data da próxima sai primeiro no Instagram.</figcaption>
       </figure>
       <div class="blackout__texto" data-reveal>
         <p class="eyebrow">O show que é dele</p>
@@ -612,12 +639,12 @@ html{scroll-behavior:smooth}
         <!-- Texto do próprio evento, publicado na página de ingressos. VALIDAR redação final com o artista. -->
         <p>Uma noite de muito groove, soul e energia. Fernando traz os clássicos que fizeram história na pista, num show envolvente, dançante e cheio de feeling.</p>
         <p>Quando o groove começa, ninguém fica parado.</p>
-        <!-- IMAGEM 3 — foto de palco (ainda falta) -->
-        <figure class="ph ph--palco" data-reveal style="margin-top:24px">
-          <!-- SUBSTITUIR: foto de show, 1200x800px
-               <img src="img/palco-01.jpg" alt="Fernando Rosa tocando baixo no BLACKOUT" loading="lazy" width="1200" height="800"> -->
-          <figcaption class="ph__marca">Foto de palco · 1200x800</figcaption>
-        </figure>
+        <!-- FALTA: foto de show do BLACKOUT, 1200x800px, para entrar aqui.
+             As de palco que existem publicas sao do ID:Rio Festival (foto de
+             Camila Mendes) e estavam fora do ar na hora do build.
+             <figure class="ph ph--palco" data-reveal style="margin-top:24px">
+               <img src="img/palco-01.jpg" alt="Fernando Rosa tocando baixo no BLACKOUT" loading="lazy" width="1200" height="800">
+             </figure> -->
       </div>
     </div>
   </div>
@@ -635,6 +662,7 @@ html{scroll-behavior:smooth}
      ========================================================================== -->
 <section class="bloco" id="sobre">
   <div class="wrap">
+    <h2 class="sr-only">Sobre Fernando Rosa</h2>
     <blockquote class="citacao" data-reveal>
       <p class="citacao__pt">“No palco a gente não toca apenas notas, a gente vive o momento de corpo e alma.”</p>
       <p class="citacao__en" lang="en">“On stage, we don’t just play notes, we live the moment body and soul.”</p>
@@ -649,13 +677,13 @@ html{scroll-behavior:smooth}
       </figure>
 
       <div class="sobre__texto" data-reveal>
-        <p>Ele aprendeu a gostar de música nos bailes de garagem de Itaquera, zona leste de São Paulo. Autodidata.</p>
+        <p>Aprendeu a gostar de música nos bailes de garagem, em Itaquera. Autodidata.</p>
         <p>Na pandemia, abriu a câmera enquanto tocava em casa. O baixo saiu de casa e foi parar no mundo.</p>
         <p>Já dividiu a estrada com Lenny Kravitz e tocou com ele no iHeartRadio Music Festival, em setembro de 2023, em <i lang="en">It Ain’t Over ’Til It’s Over</i>. Em junho de 2025 estreou o Funk Ship no Blue Note São Paulo, com Derrick McKenzie, baterista do Jamiroquai, de convidado. Quando o palco é só dele, o nome é BLACKOUT.</p>
 
         <dl class="ficha">
           <div><dt>Instrumento</dt><dd>Baixo. Music Man StingRay</dd></div>
-          <div><dt>Onde começou</dt><dd>Itaquera, zona leste de São Paulo</dd></div>
+          <div><dt>Onde começou</dt><dd>Zona leste de São Paulo</dd></div>
           <div><dt>Com Lenny Kravitz</dt><dd>iHeartRadio Music Festival, 2023</dd></div>
           <div><dt>Show solo</dt><dd>BLACKOUT</dd></div>
           <div><dt>Vida</dt><dd>Vegan</dd></div>
@@ -668,7 +696,8 @@ html{scroll-behavior:smooth}
              propósito, por não terem confirmação dele: gravações para o disco
              do Lenny Kravitz, Chemical Brothers, Ed Motta, Kell Smith, o
              instrumento feito pela Fender e a idade em que começou a tocar. -->
-        <p class="nota"><b>A confirmar</b><br>Bio oficial completa. O texto acima usa só o que está publicado em fonte aberta e foi conferido na fonte. Assim que vier a bio dele, este bloco sai.</p>
+        <!-- A CONFIRMAR: bio oficial completa do Fernando. O texto acima usa só
+             fonte aberta conferida. Quando vier a bio dele, troque os paragrafos. -->
       </div>
     </div>
   </div>
@@ -689,7 +718,7 @@ html{scroll-behavior:smooth}
   <div class="wrap">
     <div class="musica__topo">
       <h2 data-reveal>Ouvir</h2>
-      <span data-reveal>três faixas, o resto está no Instagram</span>
+      <span data-reveal>o canal está aberto, o resto sai no Instagram</span>
     </div>
     <div class="musica__grid">
       <a class="faixa faixa--grande" data-reveal href="https://www.youtube.com/@FernandoRosaBass" target="_blank" rel="noopener" style="text-decoration:none">
@@ -736,10 +765,9 @@ html{scroll-behavior:smooth}
       <span>Ernie Ball</span><i></i><span>Music Man</span><i></i><span>W Bass Cabinets</span><i></i><span>Soul Ears</span><i></i><span>Vakenelli</span><i></i><span>Mais Cabello</span><i></i>
     </div>
   </div>
-  <div class="wrap">
-    <!-- VALIDAR: quais parcerias são oficiais e podem ser listadas -->
-    <p class="nota" data-reveal style="max-width:60ch;margin-top:28px"><b>Confirmado</b><br>Ernie Ball e Music Man: ele está na página oficial de artistas da marca. As outras aparecem nos posts dele e ainda precisam de confirmação antes de virar parceria declarada aqui.</p>
-  </div>
+  <!-- CONFIRMADO: Ernie Ball e Music Man (ele consta na pagina oficial de
+       artistas da marca). VALIDAR as outras quatro antes de tratar como
+       parceria oficial: aqui elas so aparecem como marcas que andam com ele. -->
 </section>
 
 <!-- ==========================================================================
@@ -769,10 +797,12 @@ html{scroll-behavior:smooth}
         <h2>Leve esse groove pro seu palco.</h2>
         <p class="booking__en" lang="en">Bring this groove to your stage.</p>
         <div class="booking__contato">
-          <!-- SUBSTITUIR: mailto real -->
-          <a class="btn btn--ambar btn--full" id="bookingEmail" href="#booking" aria-disabled="true">A confirmar: e-mail de booking</a>
-          <!-- SUBSTITUIR: link wa.me real -->
-          <a class="btn btn--linha btn--full" id="bookingWhats" href="#booking" aria-disabled="true">A confirmar: WhatsApp</a>
+          <a class="btn btn--ambar btn--full" href="https://instagram.com/fernandorosabass" target="_blank" rel="noopener">Chamar no Instagram</a>
+          <!-- SUBSTITUIR pelos contatos reais assim que o Fernando passar. Troque
+               o bloco abaixo por:
+               <a class="btn btn--linha btn--full" href="mailto:BOOKING@DOMINIO">E-mail de booking</a>
+               <a class="btn btn--linha btn--full" href="https://wa.me/55DDDNUMERO" target="_blank" rel="noopener">WhatsApp</a> -->
+          <p class="slot-contato">A confirmar: e-mail e WhatsApp de booking</p>
         </div>
       </div>
 
@@ -782,8 +812,7 @@ html{scroll-behavior:smooth}
           <li><b>02</b><span>Participação<i>presença de baixo em show, evento ou festival</i></span></li>
           <li><b>03</b><span>Gravação<i>baixo em estúdio ou remoto</i></span></li>
         </ul>
-        <!-- VALIDAR: formatos reais de contratação com o artista/empresário -->
-        <p class="nota"><b>A confirmar</b><br>Os três formatos acima ainda precisam do aval do artista antes de virar oferta pública.</p>
+        <!-- VALIDAR: os tres formatos acima precisam do aval do artista. -->
       </div>
     </div>
   </div>
@@ -842,34 +871,135 @@ html{scroll-behavior:smooth}
   "@context":"https://schema.org",
   "@graph":[
     {
-      "@type":["Person","MusicGroup"],
+      "@type":"Person",
       "@id":"https://fernando-rosa.vercel.app/#fernandorosa",
       "name":"Fernando Rosa",
       "alternateName":"@fernandorosabass",
       "jobTitle":"Baixista",
       "description":"Baixista brasileiro, de Itaquera, zona leste de São Paulo. Já dividiu a estrada com Lenny Kravitz, tocou com ele no iHeartRadio Music Festival em 2023 e é artista oficial da Ernie Ball Music Man. Assina o show solo BLACKOUT.",
       "url":"https://fernando-rosa.vercel.app/",
-      "birthPlace":{"@type":"Place","name":"Itaquera, São Paulo, Brasil"},
+      "homeLocation":{"@type":"Place","name":"São Paulo, Brasil"},
+      "image":"https://fernando-rosa.vercel.app/og.jpg",
       "sameAs":[
         "https://instagram.com/fernandorosabass",
         "https://www.youtube.com/@FernandoRosaBass"
       ],
-      "knowsAbout":["Baixo elétrico","Groove","Funk","Soul","Disco"],
-      "instrument":"Contrabaixo elétrico"
+      "knowsAbout":["Baixo elétrico","Groove","Funk","Soul","Disco"]
     }
   ]
 }
 </script>
 
+<!-- ==========================================================================
+     SCRIPT 1 · BASE DA PÁGINA
+     Fica num bloco separado de propósito: um erro de digitação no array de
+     shows do script 2 não pode derrubar o reveal e apagar o site da tela.
+     ========================================================================== -->
 <script>
+document.body.classList.add('carregado');
+
+/* ---- reveal por IntersectionObserver + failsafe ---------------------------
+   Exposto em window.revelar para o script da agenda registrar os pôsteres
+   que ele cria depois. */
+(function(){
+  var io = null;
+
+  function revelaTudo(){
+    var f = document.querySelectorAll('[data-reveal]:not(.is-visible)');
+    for(var i=0;i<f.length;i++){ f[i].classList.add('is-visible'); }
+  }
+
+  if('IntersectionObserver' in window){
+    io = new IntersectionObserver(function(entradas){
+      entradas.forEach(function(e){
+        if(e.isIntersecting){ e.target.classList.add('is-visible'); io.unobserve(e.target); }
+      });
+    },{threshold:0.05,rootMargin:'0px 0px -15% 0px'});
+  }
+
+  window.revelar = function(){
+    if(!io){ revelaTudo(); return; }
+    var novos = document.querySelectorAll('[data-reveal]:not(.is-visible)');
+    for(var i=0;i<novos.length;i++){ io.observe(novos[i]); }
+  };
+  window.revelar();
+
+  setTimeout(revelaTudo,3000);
+  window.addEventListener('load',function(){ setTimeout(revelaTudo,1200); });
+})();
+
+/* ---- nav: sombra ao rolar + menu mobile ----------------------------------- */
+(function(){
+  var nav = document.getElementById('nav');
+  var toggle = document.getElementById('navToggle');
+  var links = document.getElementById('navLinks');
+  if(!nav || !toggle || !links) return;
+  var tick = false;
+  window.addEventListener('scroll', function(){
+    if(tick) return; tick = true;
+    requestAnimationFrame(function(){
+      nav.classList.toggle('is-scrolled', window.scrollY > 24);
+      tick = false;
+    });
+  }, {passive:true});
+
+  function fecha(){
+    links.classList.remove('is-open');
+    toggle.setAttribute('aria-expanded','false');
+    toggle.textContent = 'Menu';
+  }
+  toggle.addEventListener('click', function(){
+    var aberto = links.classList.toggle('is-open');
+    toggle.setAttribute('aria-expanded', aberto ? 'true' : 'false');
+    toggle.textContent = aberto ? 'Fechar' : 'Menu';
+  });
+  links.addEventListener('click', function(e){ if(e.target.tagName === 'A') fecha(); });
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape' && links.classList.contains('is-open')){ fecha(); toggle.focus(); }
+  });
+})();
+
+/* ---- barra fixa do mobile: sobe depois do hero e não some mais ------------ */
+(function(){
+  var barra = document.getElementById('sticky');
+  var hero = document.querySelector('.hero');
+  if(!barra) return;
+  function mostra(){
+    if(barra.classList.contains('is-on')) return;
+    barra.classList.add('is-on');
+    document.body.classList.add('tem-sticky');
+  }
+  if(!('IntersectionObserver' in window) || !hero){ mostra(); return; }
+  var io = new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(!e.isIntersecting) mostra(); });
+  },{threshold:0});
+  io.observe(hero);
+  /* rede de segurança: se o observer não acordar, o scroll resolve */
+  window.addEventListener('scroll', function(){
+    if(window.scrollY > window.innerHeight * 0.85) mostra();
+  }, {passive:true});
+})();
+
+document.getElementById('ano').textContent = new Date().getFullYear();
+</script>
+
+<!-- ==========================================================================
+     SCRIPT 2 · AGENDA
+     ========================================================================== -->
+<script>
+(function(){
+'use strict';
+
 /* ==========================================================================
    AGENDA — ÚNICO LUGAR PARA EDITAR AS DATAS
    Publicar um show novo: acrescente um objeto no topo do array SHOWS.
      data  'AAAA-MM-DD'  (data real do show)
      tba   true          (pôster de "data a confirmar", sem data inventada)
+     casa  'Red Star'    cidade  'São Paulo, SP'
      link  URL de ingressos (deixe vazio se ainda não abriu venda)
    O site se vira sozinho a partir daqui: destaque, contagem regressiva,
    texto dos botões, faixa de "já aconteceu" e o Schema.org de Event.
+   Data escrita errado é ignorada em vez de quebrar a página.
    ========================================================================== */
 var SHOWS = [
   {
@@ -902,37 +1032,47 @@ function hojeSP(){
   try{
     return new Intl.DateTimeFormat('en-CA',{timeZone:'America/Sao_Paulo',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date());
   }catch(e){
-    var d=new Date();
+    var d = new Date();
     return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
   }
+}
+/* data invalida (typo, mes 13, 31/02) nao entra na pagina nem no Schema.org */
+function dataValida(iso){
+  if(typeof iso !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(iso)) return false;
+  var d = new Date(iso+'T00:00:00Z');
+  return !isNaN(d.getTime()) && d.toISOString().slice(0,10) === iso;
 }
 function diasAte(iso){
   return Math.round((Date.parse(iso+'T00:00:00Z') - Date.parse(hojeSP()+'T00:00:00Z'))/86400000);
 }
 function fmtFalta(d){
-  if(d===0) return 'é hoje';
-  if(d===1) return 'é amanhã';
+  if(d === 0) return 'é hoje';
+  if(d === 1) return 'é amanhã';
   return 'faltam '+d+' dias';
 }
 function esc(s){
-  return String(s==null?'':s).replace(/[&<>"']/g,function(c){
+  return String(s == null ? '' : s).replace(/[&<>"']/g,function(c){
     return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];
   });
 }
 function local(s){
-  var p=[];
+  var p = [];
   if(s.casa) p.push(s.casa);
   if(s.cidade) p.push(s.cidade);
   return p.length ? p.join(', ') : 'Local a confirmar';
 }
 
 /* ---- separa a agenda ------------------------------------------------------ */
-var datados = SHOWS.filter(function(s){ return s.data; });
-var futuros = datados.filter(function(s){ return diasAte(s.data) >= 0; })
-                     .sort(function(a,b){ return a.data < b.data ? -1 : 1; });
+var ignorados = SHOWS.filter(function(s){ return s.data && !dataValida(s.data); });
+if(ignorados.length && window.console){
+  console.warn('Agenda: ' + ignorados.length + ' show(s) com data invalida foram ignorados. Use AAAA-MM-DD.', ignorados);
+}
+var datados  = SHOWS.filter(function(s){ return dataValida(s.data); });
+var futuros  = datados.filter(function(s){ return diasAte(s.data) >= 0; })
+                      .sort(function(a,b){ return a.data < b.data ? -1 : 1; });
 var passados = datados.filter(function(s){ return diasAte(s.data) < 0; })
                       .sort(function(a,b){ return a.data > b.data ? -1 : 1; });
-var tbas = SHOWS.filter(function(s){ return s.tba; });
+var tbas     = SHOWS.filter(function(s){ return s.tba; });
 var destaque = futuros[0] || null;
 
 /* ---- pôsteres ------------------------------------------------------------- */
@@ -944,7 +1084,7 @@ futuros.forEach(function(s){
   var d = diasAte(s.data);
   var partes = s.data.split('-');
   var eDestaque = (s === destaque);
-  html += '<article class="poster'+(eDestaque?' poster--destaque':'')+'" data-reveal style="--d:'+(idx*.09)+'s">'
+  html += '<article class="poster'+(eDestaque?' poster--destaque':'')+'" data-reveal style="--d:'+(idx*0.09)+'s">'
     + '<div class="poster__data"><span class="poster__dia">'+partes[2]+'</span>'
     + '<span class="poster__mes">'+MESES[parseInt(partes[1],10)-1]+'</span>'
     + '<span class="poster__ano">'+partes[0]+'</span></div>'
@@ -955,13 +1095,13 @@ futuros.forEach(function(s){
     + '<div class="poster__acao"><span class="poster__falta">'+fmtFalta(d)+'</span>'
     + (s.link
         ? '<a class="btn btn--ambar btn--sm btn--ingresso" href="'+esc(s.link)+'" target="_blank" rel="noopener">Ingressos</a>'
-        : '<span class="poster__falta">venda em breve</span>')
+        : '<a class="btn btn--linha btn--sm" href="'+INSTAGRAM+'" target="_blank" rel="noopener">Ser avisado</a>')
     + '</div></article>';
   idx++;
 });
 
 tbas.forEach(function(s){
-  html += '<article class="poster poster--tba" data-reveal style="--d:'+(idx*.09)+'s">'
+  html += '<article class="poster poster--tba" data-reveal style="--d:'+(idx*0.09)+'s">'
     + '<div class="poster__data"><span class="poster__dia">??</span>'
     + '<span class="poster__mes">data a confirmar</span></div>'
     + '<div class="poster__corpo"><h3 class="poster__nome">'+esc(s.nome)+(s.rotulo?' · '+esc(s.rotulo):'')+'</h3>'
@@ -979,62 +1119,83 @@ if(!html){
     + '<p class="poster__local">A agenda entra aqui assim que fechar</p></div>'
     + '<div class="poster__acao"><a class="btn btn--ambar btn--sm btn--ingresso" href="'+INSTAGRAM+'" target="_blank" rel="noopener">Seguir no Instagram</a></div></article>';
 }
-alvo.innerHTML = html;
+if(alvo) alvo.innerHTML = html;
 
 /* ---- faixa de shows que já aconteceram ------------------------------------ */
 if(passados.length){
   var box = document.getElementById('passados');
-  box.hidden = false;
-  document.getElementById('passadosLista').innerHTML = passados.map(function(s){
-    var p = s.data.split('-');
-    return '<div class="passado"><span class="passado__data">'+p[2]+' '+MESES[parseInt(p[1],10)-1]+' '+p[0]+'</span>'
-      + '<span class="passado__nome">'+esc(s.nome)+'</span>'
-      + '<span class="passado__local">'+esc(local(s))+'</span>'
-      + (s.link ? '<a href="'+esc(s.link)+'" target="_blank" rel="noopener">página do evento</a>' : '')
-      + '</div>';
-  }).join('');
+  if(box){
+    box.hidden = false;
+    document.getElementById('passadosLista').innerHTML = passados.map(function(s){
+      var p = s.data.split('-');
+      return '<div class="passado"><span class="passado__data">'+p[2]+' '+MESES[parseInt(p[1],10)-1]+' '+p[0]+'</span>'
+        + '<span class="passado__nome">'+esc(s.nome)+'</span>'
+        + '<span class="passado__local">'+esc(local(s))+'</span>'
+        + (s.link ? '<a href="'+esc(s.link)+'" target="_blank" rel="noopener">página do evento</a>' : '')
+        + '</div>';
+    }).join('');
+  }
 }
 
-/* ---- estado dos CTAs: com show futuro vira ingresso, sem show vira Instagram */
-var heroCta = document.getElementById('heroCta');
-var navCta = document.getElementById('navCta');
+/* ---- estado dos CTAs -------------------------------------------------------
+   Com show futuro E link de venda, tudo vira funil de ingresso.
+   Com show futuro SEM link, o botão não pode dizer "Ingressos" e mandar o fã
+   pro Instagram: o rótulo muda junto com o destino.
+   Sem show futuro, o site assume isso e converte para Instagram. */
+var heroCta   = document.getElementById('heroCta');
+var navCta    = document.getElementById('navCta');
 var stickyCta = document.getElementById('stickyCta');
-var finalCta = document.getElementById('finalCta');
-var elStatus = document.getElementById('agendaStatus');
-var contagem = document.getElementById('heroContagem');
+var finalCta  = document.getElementById('finalCta');
+var elStatus  = document.getElementById('agendaStatus');
+var contagem  = document.getElementById('heroContagem');
+
+function externo(el, href){
+  if(!el) return;
+  el.setAttribute('href', href);
+  el.setAttribute('target','_blank');
+  el.setAttribute('rel','noopener');
+}
 
 if(destaque){
   var dias = diasAte(destaque.data);
-  var alvoLink = destaque.link || INSTAGRAM;
+  var temVenda = !!destaque.link;
+  var href = temVenda ? destaque.link : INSTAGRAM;
 
-  [heroCta, navCta, stickyCta].forEach(function(el){
-    if(!el) return;
-    el.setAttribute('href', alvoLink);
-    if(destaque.link){ el.setAttribute('target','_blank'); el.setAttribute('rel','noopener'); }
-  });
-  heroCta.textContent = 'Ingressos · ' + destaque.nome;
-  navCta.textContent = 'Ingressos';
-  stickyCta.textContent = 'Ingressos · próximo show';
-  finalCta.textContent = 'Ingressos · ' + destaque.nome;
-  finalCta.setAttribute('href', alvoLink);
-  if(destaque.link){ finalCta.setAttribute('target','_blank'); finalCta.setAttribute('rel','noopener'); }
+  externo(heroCta, href);
+  externo(navCta, href);
+  externo(stickyCta, href);
+  externo(finalCta, href);
 
-  document.getElementById('finalTit').textContent = 'O próximo show já tem data.';
-  elStatus.innerHTML = 'Próximo show · <strong>' + fmtFalta(dias) + '</strong>';
-  contagem.innerHTML = destaque.nome + ' · <strong>' + fmtFalta(dias) + '</strong>';
+  if(temVenda){
+    heroCta.textContent   = 'Ingressos · ' + destaque.nome;
+    navCta.textContent    = 'Ingressos';
+    stickyCta.textContent = 'Ingressos · próximo show';
+    finalCta.textContent  = 'Ingressos · ' + destaque.nome;
+    document.getElementById('finalTit').textContent = 'O próximo show já tem data.';
+  }else{
+    heroCta.textContent   = 'Ser avisado da venda';
+    navCta.textContent    = 'Agenda';
+    stickyCta.textContent = 'Ser avisado da venda';
+    finalCta.textContent  = 'Ser avisado da venda';
+    document.getElementById('finalTit').textContent = 'O próximo show já tem data. A venda abre em breve.';
+  }
+
+  elStatus.innerHTML = 'Próximo show · <strong>' + esc(fmtFalta(dias)) + '</strong>';
+  contagem.innerHTML = esc(destaque.nome) + ' · <strong>' + esc(fmtFalta(dias)) + '</strong>';
 }else{
   elStatus.innerHTML = 'Novas datas · <strong>em breve</strong>';
   contagem.innerHTML = 'Sem data aberta agora. A próxima cai <strong>primeiro no Instagram</strong>.';
-  heroCta.textContent = 'Ser avisado do próximo show';
-  heroCta.setAttribute('href', INSTAGRAM);
-  heroCta.setAttribute('target','_blank'); heroCta.setAttribute('rel','noopener');
-  navCta.textContent = 'Agenda';
+  heroCta.textContent   = 'Ser avisado do próximo show';
   stickyCta.textContent = 'Ser avisado do próximo show';
-  stickyCta.setAttribute('href', INSTAGRAM);
-  stickyCta.setAttribute('target','_blank'); stickyCta.setAttribute('rel','noopener');
+  navCta.textContent    = 'Agenda';
+  externo(heroCta, INSTAGRAM);
+  externo(stickyCta, INSTAGRAM);
 }
 
-/* ---- Schema.org Event, só para shows com data real ------------------------ */
+/* ---- Schema.org Event -----------------------------------------------------
+   Só entra show com data válida. location só quando casa/cidade estiverem
+   preenchidas: o Google prefere um Event a menos a um Event com local falso.
+   Show que já passou sai como EventScheduled no passado, não como agendado. */
 (function(){
   var eventos = datados.map(function(s){
     var e = {
@@ -1047,13 +1208,13 @@ if(destaque){
       "organizer":{"@id":"https://fernando-rosa.vercel.app/#fernandorosa"}
     };
     if(s.link) e.url = s.link;
-    /* location só entra quando a casa/cidade estiver confirmada: nada inventado */
     if(s.casa || s.cidade){
       e.location = {"@type":"Place","name":s.casa || s.cidade};
       if(s.cidade) e.location.address = {"@type":"PostalAddress","addressLocality":s.cidade,"addressCountry":"BR"};
     }
     return e;
-  });
+  }).filter(function(e){ return !!e.location; });
+
   if(!eventos.length) return;
   var tag = document.createElement('script');
   tag.type = 'application/ld+json';
@@ -1061,80 +1222,11 @@ if(destaque){
   document.head.appendChild(tag);
 })();
 
-/* ---- reveal por IntersectionObserver + failsafe de 3s --------------------- */
-(function(){
-  var itens = document.querySelectorAll('[data-reveal]');
-  if(!('IntersectionObserver' in window)){
-    itens.forEach(function(el){ el.classList.add('is-visible'); });
-    return;
-  }
-  var io = new IntersectionObserver(function(entradas){
-    entradas.forEach(function(e){
-      if(e.isIntersecting){ e.target.classList.add('is-visible'); io.unobserve(e.target); }
-    });
-  },{threshold:0.05,rootMargin:'0px 0px -15% 0px'});
-  itens.forEach(function(el){ io.observe(el); });
+/* registra os pôsteres recém-criados no observer do script 1 */
+if(typeof window.revelar === 'function') window.revelar();
 
-  function revelaTudo(){
-    document.querySelectorAll('[data-reveal]:not(.is-visible)').forEach(function(el){
-      el.classList.add('is-visible');
-    });
-  }
-  setTimeout(revelaTudo,3000);
-  window.addEventListener('load',function(){ setTimeout(revelaTudo,1200); });
 })();
-
-/* ---- nav: sombra ao rolar + menu mobile ----------------------------------- */
-(function(){
-  var nav = document.getElementById('nav');
-  var toggle = document.getElementById('navToggle');
-  var links = document.getElementById('navLinks');
-  var tick = false;
-  window.addEventListener('scroll', function(){
-    if(tick) return; tick = true;
-    requestAnimationFrame(function(){
-      nav.classList.toggle('is-scrolled', window.scrollY > 24);
-      tick = false;
-    });
-  }, {passive:true});
-
-  toggle.addEventListener('click', function(){
-    var aberto = links.classList.toggle('is-open');
-    toggle.setAttribute('aria-expanded', aberto ? 'true' : 'false');
-    toggle.textContent = aberto ? 'Fechar' : 'Menu';
-  });
-  links.addEventListener('click', function(e){
-    if(e.target.tagName === 'A'){
-      links.classList.remove('is-open');
-      toggle.setAttribute('aria-expanded','false');
-      toggle.textContent = 'Menu';
-    }
-  });
-})();
-
-/* ---- barra fixa do mobile aparece depois do hero e não some mais ---------- */
-(function(){
-  var barra = document.getElementById('sticky');
-  var hero = document.querySelector('.hero');
-  function mostra(){
-    if(barra.classList.contains('is-on')) return;
-    barra.classList.add('is-on');
-    document.body.classList.add('tem-sticky');
-  }
-  if(!('IntersectionObserver' in window) || !hero){ mostra(); return; }
-  var io = new IntersectionObserver(function(es){
-    es.forEach(function(e){ if(!e.isIntersecting) mostra(); });
-  },{threshold:0});
-  io.observe(hero);
-  /* rede de seguranca: se o observer nao acordar, o scroll resolve */
-  window.addEventListener('scroll', function(){
-    if(window.scrollY > window.innerHeight * 0.85) mostra();
-  }, {passive:true});
-})();
-
-/* ---- ano do rodapé + entrada do hero -------------------------------------- */
-document.getElementById('ano').textContent = new Date().getFullYear();
-requestAnimationFrame(function(){ document.body.classList.add('carregado'); });
 </script>
+
 </body>
 </html>

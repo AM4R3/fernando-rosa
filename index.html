@@ -216,11 +216,6 @@ section{position:relative}
   background-image:repeating-linear-gradient(0deg,rgba(255,255,255,.022) 0 1px,transparent 1px 3px);
 }
 .hero__in{position:relative;z-index:3;width:100%;max-width:var(--max);margin:0 auto;padding:0 var(--gut)}
-.hero__tag{
-  display:inline-flex;align-items:center;gap:10px;font-size:11px;font-weight:700;letter-spacing:.26em;
-  text-transform:uppercase;color:var(--mudo);margin-bottom:26px;
-}
-.hero__tag i{display:block;width:26px;height:1px;background:var(--ambar);font-style:normal}
 .hero h1{
   font-size:clamp(2.9rem,10.5vw,7.4rem);max-width:14ch;
   text-shadow:0 6px 40px rgba(18,14,22,.75);margin-bottom:26px;
@@ -283,10 +278,11 @@ section{position:relative}
 
 /* a frase do Lenny Kravitz */
 .depo{border-bottom:1px solid var(--linha);padding:clamp(52px,8vw,96px) 0}
-.depo blockquote{margin:0;max-width:min(100%,760px)}
+.depo figure{margin:0;max-width:min(100%,760px)}
+.depo blockquote{margin:0}
 .depo p{font-size:clamp(1.16rem,3vw,1.72rem);line-height:1.34;font-style:italic;margin:0 0 22px}
-.depo cite{display:block;font-style:normal;font-family:'Unbounded',sans-serif;font-weight:600;font-size:15px;letter-spacing:-.01em}
-.depo small{display:block;margin-top:8px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--mudo)}
+.depo figcaption{font-family:'Unbounded',sans-serif;font-weight:600;font-size:15px;letter-spacing:-.01em}
+.depo figcaption small{display:block;margin-top:8px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--mudo)}
 
 /* ==========================================================================
    05 · REVEAL
@@ -363,7 +359,8 @@ section{position:relative}
 .poster--tba .poster__mes{color:var(--mudo);line-height:1.3;max-width:12ch}
 
 .passados{margin-top:52px;padding-top:30px;border-top:1px solid var(--linha)}
-.passados__tit{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--mudo);margin-bottom:18px}
+.passados__tit{font-family:ui-monospace,Menlo,Consolas,monospace;font-weight:400;line-height:1.5;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--mudo);margin-bottom:18px}
+.passados__lista{list-style:none;margin:0;padding:0}
 .passado{
   display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 16px;padding:13px 0;
   border-bottom:1px solid var(--linha);opacity:.8;transition:opacity .3s ease;
@@ -400,6 +397,7 @@ section{position:relative}
 
 /* --- SOBRE ------------------------------------------------------------ */
 .citacao{margin:0 0 clamp(46px,7vw,78px)}
+.citacao blockquote{margin:0}
 .citacao__pt{
   font-family:'Unbounded',sans-serif;font-weight:600;letter-spacing:-.02em;line-height:1.06;
   font-size:clamp(1.6rem,5.4vw,3.05rem);max-width:20ch;margin:0 0 20px;
@@ -439,13 +437,13 @@ section{position:relative}
 .faixa:hover{border-color:var(--linha-forte);transform:translateY(-3px)}
 .faixa--grande{grid-row:span 2;min-height:380px;background:linear-gradient(150deg,#3A2653,#1E1629 70%)}
 .faixa__num{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:10.5px;letter-spacing:.24em;color:var(--mudo)}
-.faixa__nome{font-family:'Unbounded',sans-serif;font-weight:600;font-size:clamp(1.1rem,2.6vw,1.5rem);letter-spacing:-.015em}
+.faixa__nome{margin:0;font-family:'Unbounded',sans-serif;font-weight:600;font-size:clamp(1.1rem,2.6vw,1.5rem);letter-spacing:-.015em}
 .faixa--grande .faixa__nome{font-size:clamp(1.4rem,3.6vw,2.1rem)}
 .faixa__slot{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:10.5px;letter-spacing:.1em;color:var(--mudo);border:1px dashed var(--linha-forte);border-radius:2px;padding:5px 9px;align-self:flex-start;margin-top:4px}
 
 /* --- MARCAS ----------------------------------------------------------- */
 .marcas{padding:clamp(46px,7vw,74px) 0;border-top:1px solid var(--linha);border-bottom:1px solid var(--linha);overflow:hidden}
-.marcas__tit{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:var(--mudo);margin-bottom:26px}
+.marcas__tit{font-family:ui-monospace,Menlo,Consolas,monospace;font-weight:400;line-height:1.5;font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:var(--mudo);margin-bottom:26px}
 .marcas__pista{display:flex;width:max-content;will-change:transform;animation:marquee-marcas 38s linear infinite}
 .marcas__pista:hover{animation-play-state:paused}
 .marcas__set{display:flex;align-items:center;flex-shrink:0}
@@ -453,7 +451,7 @@ section{position:relative}
   font-family:'Unbounded',sans-serif;font-weight:600;font-size:clamp(1.05rem,2.6vw,1.7rem);
   letter-spacing:-.01em;color:var(--claro);opacity:.78;padding:0 clamp(20px,3.4vw,42px);white-space:nowrap;
 }
-.marcas__set i{display:block;width:5px;height:5px;border-radius:50%;background:var(--ambar);opacity:.7;flex-shrink:0}
+.marcas__set .marcas__ponto{display:block;width:5px;height:5px;padding:0;border-radius:50%;background:var(--ambar);opacity:.7;flex-shrink:0}
 @keyframes marquee-marcas{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
 /* --- BOOKING ---------------------------------------------------------- */
@@ -461,11 +459,11 @@ section{position:relative}
 .booking__grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(30px,5vw,72px);align-items:start}
 .booking h2{font-size:clamp(1.9rem,5.4vw,3.2rem);max-width:15ch;margin-bottom:14px}
 .booking__en{font-size:15.5px;font-style:italic;color:var(--mudo);max-width:36ch;margin:0 0 28px}
-.booking__lista{list-style:none;margin:0;padding:0;border-top:1px solid var(--linha)}
-.booking__lista li{display:flex;gap:16px;align-items:baseline;padding:15px 0;border-bottom:1px solid var(--linha)}
-.booking__lista b{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:10.5px;letter-spacing:.2em;color:var(--ambar);flex:0 0 26px}
-.booking__lista span{font-size:15.5px}
-.booking__lista i{display:block;font-style:normal;font-size:13.5px;color:var(--mudo);margin-top:2px}
+.booking__lista{list-style:none;margin:0;padding:0;border-top:1px solid var(--linha);counter-reset:bk}
+.booking__lista li{display:grid;grid-template-columns:26px 1fr;gap:2px 16px;padding:15px 0;border-bottom:1px solid var(--linha);counter-increment:bk}
+.booking__lista li::before{content:counter(bk,decimal-leading-zero);grid-row:1/3;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:10.5px;letter-spacing:.2em;color:var(--ambar);padding-top:4px}
+.booking__nome{font-size:15.5px;font-weight:600}
+.booking__desc{font-size:13.5px;color:var(--mudo)}
 .booking__contato{display:flex;flex-direction:column;gap:11px;margin-top:30px}
 
 /* --- CTA FINAL / FOOTER ----------------------------------------------- */
@@ -475,7 +473,8 @@ section{position:relative}
 
 .rodape{border-top:1px solid var(--linha);padding:44px 0 34px;font-size:14px;color:var(--mudo)}
 .rodape__grid{display:flex;flex-wrap:wrap;gap:26px 48px;justify-content:space-between;margin-bottom:32px}
-.rodape__col b{display:block;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--mudo);margin-bottom:8px;font-weight:400}
+.rodape__col dt{display:block;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--mudo);margin-bottom:8px;font-weight:400}
+.rodape__col dd{margin:0}
 .rodape__col a{display:inline-block;color:var(--claro);text-decoration:none;font-weight:600;border-bottom:1px solid var(--linha-forte);padding:15px 0 5px}
 .rodape__col a:hover{border-bottom-color:var(--ambar)}
 .rodape__fim{display:flex;flex-wrap:wrap;gap:6px 20px;align-items:center;justify-content:space-between;padding-top:22px;border-top:1px solid var(--linha);font-size:12px}
@@ -577,7 +576,7 @@ html{scroll-behavior:smooth}
       <a href="#musica">Música</a>
       <a href="#booking">Booking</a>
     </nav>
-    <button class="nav__toggle" id="navToggle" aria-expanded="false" aria-controls="navLinks">Menu</button>
+    <button class="nav__toggle" type="button" id="navToggle" aria-expanded="false" aria-controls="navLinks">Menu</button>
     <a class="btn btn--ambar btn--sm btn--ingresso" id="navCta" href="#shows">Ingressos</a>
   </div>
 </header>
@@ -607,7 +606,6 @@ html{scroll-behavior:smooth}
   <div class="hero__grao" aria-hidden="true"></div>
 
   <div class="hero__in">
-    <p class="hero__tag entrada"><i></i>Baixo · palco · estrada</p>
     <h1>Groove de corpo e alma.</h1>
     <p class="hero__sub entrada"><b>Fernando Rosa. Baixista.</b> De Itaquera, zona leste de São Paulo, para a estrada com Lenny Kravitz.</p>
     <div class="hero__acoes entrada">
@@ -632,28 +630,23 @@ html{scroll-behavior:smooth}
     <div class="posteres" id="posteres"></div>
 
     <div class="passados" id="passados" hidden>
-      <p class="passados__tit">Já aconteceu</p>
-      <div id="passadosLista"></div>
+      <h3 class="passados__tit">Já aconteceu</h3>
+      <ul class="passados__lista" id="passadosLista"></ul>
     </div>
 
     <!-- IMAGEM 2 — cartaz oficial do BLACKOUT (arte do próprio evento) -->
     <div class="blackout">
       <figure class="blackout__arte" data-reveal>
         <img src="img/blackout-iv-420.webp" srcset="img/blackout-iv-420.webp 420w, img/blackout-iv.webp 739w" sizes="(max-width:768px) 88vw, 30vw" decoding="async" alt="Cartaz do show: Fernando Rosa Presents BLACKOUT. 27 de agosto, quinta, às 21h. Abertura da casa às 19h. Local: Red Star, Rua Teodoro Sampaio, 512, com estacionamento no local, a 5 minutos do metrô Clínicas." loading="lazy" width="739" height="1120">
-        <figcaption>Cartaz da edição anterior. A data da próxima sai primeiro no Instagram.</figcaption>
+        <figcaption>Cartaz da edição anterior. A próxima ainda não tem data anunciada.</figcaption>
       </figure>
       <div class="blackout__texto" data-reveal>
-        <p class="eyebrow">O show que é dele</p>
         <h3>BLACKOUT</h3>
         <!-- Texto do próprio evento, publicado na página de ingressos. VALIDAR redação final com o artista. -->
-        <p>Uma noite de muito groove, soul e energia. Fernando traz os clássicos que fizeram história na pista, num show envolvente, dançante e cheio de feeling.</p>
-        <p>Quando o groove começa, ninguém fica parado.</p>
-        <!-- FALTA: foto de show do BLACKOUT, 1200x800px, para entrar aqui.
-             As de palco que existem publicas sao do ID:Rio Festival (foto de
-             Camila Mendes) e estavam fora do ar na hora do build.
-             <figure class="ph ph--palco" data-reveal style="margin-top:24px">
-               <img src="img/palco-01.jpg" alt="Fernando Rosa tocando baixo no BLACKOUT" loading="lazy" width="1200" height="800">
-             </figure> -->
+        <p>Os clássicos que fizeram história na pista, tocados por quem vive de groove e soul.</p>
+        <p>Quando começa, ninguém fica sentado.</p>
+        <!-- FALTA: foto de show do BLACKOUT, 1200x800px. O markup pronto para
+             colar aqui esta no README.md, secao "Trocar as fotos". -->
       </div>
     </div>
   </div>
@@ -672,11 +665,13 @@ html{scroll-behavior:smooth}
 <section class="bloco" id="sobre">
   <div class="wrap">
     <h2 class="sr-only">Sobre Fernando Rosa</h2>
-    <blockquote class="citacao" data-reveal>
-      <p class="citacao__pt">“No palco a gente não toca apenas notas, a gente vive o momento de corpo e alma.”</p>
-      <p class="citacao__en" lang="en">“On stage, we don’t just play notes, we live the moment body and soul.”</p>
-      <p class="citacao__quem">Fernando Rosa</p>
-    </blockquote>
+    <figure class="citacao" data-reveal>
+      <blockquote>
+        <p class="citacao__pt">“No palco a gente não toca apenas notas, a gente vive o momento de corpo e alma.”</p>
+        <p class="citacao__en" lang="en">“On stage, we don’t just play notes, we live the moment body and soul.”</p>
+      </blockquote>
+      <figcaption class="citacao__quem">Fernando Rosa</figcaption>
+    </figure>
 
     <div class="sobre__grid">
       <!-- IMAGEM 4 — retrato de estúdio (foto real)
@@ -686,16 +681,16 @@ html{scroll-behavior:smooth}
       </figure>
 
       <div class="sobre__texto" data-reveal>
-        <p>Aprendeu a gostar de música nos bailes de garagem, em Itaquera. Autodidata.</p>
-        <p>Na pandemia, abriu a câmera enquanto tocava em casa. O baixo saiu de casa e foi parar no mundo.</p>
-        <p>Já dividiu a estrada com Lenny Kravitz e tocou com ele no iHeartRadio Music Festival, em setembro de 2023, em <i lang="en">It Ain’t Over ’Til It’s Over</i>. Em junho de 2025 estreou o Funk Ship no Blue Note São Paulo, com Derrick McKenzie, baterista do Jamiroquai, de convidado. Quando o palco é só dele, o nome é BLACKOUT.</p>
+        <p>Aprendeu a gostar de música nos bailes de garagem em Itaquera. Autodidata.</p>
+        <p>Na pandemia, abriu a câmera enquanto tocava em casa. O baixo saiu dali e foi parar no mundo.</p>
+        <p>Já dividiu a estrada com Lenny Kravitz. Tocou <cite lang="en">It Ain’t Over ’Til It’s Over</cite> com ele no iHeartRadio Music Festival, em setembro de 2023. Levou o Funk Ship ao Blue Note São Paulo em junho de 2025, com Derrick McKenzie, do Jamiroquai, como convidado. Quando o palco é só dele, o nome é BLACKOUT.</p>
 
         <dl class="ficha">
-          <div><dt>Instrumento</dt><dd>Baixo. Music Man StingRay</dd></div>
-          <div><dt>Onde começou</dt><dd>Zona leste de São Paulo</dd></div>
+          <div><dt>Instrumento</dt><dd>Baixo, Music Man StingRay</dd></div>
+          <div><dt>Onde começou</dt><dd>Itaquera, São Paulo</dd></div>
           <div><dt>Com Lenny Kravitz</dt><dd>iHeartRadio Music Festival, 2023</dd></div>
           <div><dt>Show solo</dt><dd>BLACKOUT</dd></div>
-          <div><dt>Vida</dt><dd>Vegan</dd></div>
+          <div><dt>Vida</dt><dd>Vegano</dd></div>
         </dl>
 
         <!-- Tudo acima veio de fonte pública aberta e conferida: Bass Magazine,
@@ -727,23 +722,23 @@ html{scroll-behavior:smooth}
   <div class="wrap">
     <div class="musica__topo">
       <h2 data-reveal>Ouvir</h2>
-      <span data-reveal>o canal está aberto, o resto sai no Instagram</span>
+      <span data-reveal>o canal está aberto. O resto, no Instagram</span>
     </div>
     <div class="musica__grid">
       <a class="faixa faixa--grande" data-reveal href="https://www.youtube.com/@FernandoRosaBass" target="_blank" rel="noopener" style="text-decoration:none">
         <span class="faixa__num">01</span>
-        <span class="faixa__nome">Covers de groove</span>
+        <h3 class="faixa__nome">Covers de groove</h3>
         <span class="faixa__slot" style="border-style:solid;color:var(--claro)">Canal no YouTube</span>
       </a>
       <div class="faixa" data-reveal>
         <span class="faixa__num">02</span>
-        <span class="faixa__nome">BLACKOUT ao vivo</span>
+        <h3 class="faixa__nome">BLACKOUT ao vivo</h3>
         <!-- SUBSTITUIR: link real do vídeo -->
         <span class="faixa__slot">A confirmar: link do vídeo</span>
       </div>
       <div class="faixa" data-reveal>
         <span class="faixa__num">03</span>
-        <span class="faixa__nome">Funk Ship</span>
+        <h3 class="faixa__nome">Funk Ship</h3>
         <!-- SUBSTITUIR: link real. Estreou no Blue Note SP em 17/06/2025. -->
         <span class="faixa__slot">A confirmar: link</span>
       </div>
@@ -764,14 +759,14 @@ html{scroll-behavior:smooth}
      ========================================================================== -->
 <section class="marcas" data-anim>
   <div class="wrap">
-    <p class="marcas__tit" data-reveal>Marcas que andam com ele</p>
+    <h2 class="marcas__tit" data-reveal>Marcas que andam com ele</h2>
   </div>
   <div class="marcas__pista">
     <div class="marcas__set">
-      <span>Ernie Ball</span><i></i><span>Music Man</span><i></i><span>W Bass Cabinets</span><i></i><span>Soul Ears</span><i></i><span>Vakenelli</span><i></i><span>Mais Cabello</span><i></i>
+      <span>Ernie Ball</span><span class="marcas__ponto" aria-hidden="true"></span><span>Music Man</span><span class="marcas__ponto" aria-hidden="true"></span><span>W Bass Cabinets</span><span class="marcas__ponto" aria-hidden="true"></span><span>Soul Ears</span><span class="marcas__ponto" aria-hidden="true"></span><span>Vakenelli</span><span class="marcas__ponto" aria-hidden="true"></span><span>Mais Cabello</span><span class="marcas__ponto" aria-hidden="true"></span>
     </div>
     <div class="marcas__set" aria-hidden="true">
-      <span>Ernie Ball</span><i></i><span>Music Man</span><i></i><span>W Bass Cabinets</span><i></i><span>Soul Ears</span><i></i><span>Vakenelli</span><i></i><span>Mais Cabello</span><i></i>
+      <span>Ernie Ball</span><span class="marcas__ponto" aria-hidden="true"></span><span>Music Man</span><span class="marcas__ponto" aria-hidden="true"></span><span>W Bass Cabinets</span><span class="marcas__ponto" aria-hidden="true"></span><span>Soul Ears</span><span class="marcas__ponto" aria-hidden="true"></span><span>Vakenelli</span><span class="marcas__ponto" aria-hidden="true"></span><span>Mais Cabello</span><span class="marcas__ponto" aria-hidden="true"></span>
     </div>
   </div>
   <!-- CONFIRMADO: Ernie Ball e Music Man (ele consta na pagina oficial de
@@ -786,11 +781,13 @@ html{scroll-behavior:smooth}
      ========================================================================== -->
 <section class="depo">
   <div class="wrap">
-    <blockquote data-reveal>
-      <p lang="en">“What I love in Fernando’s bass performance is that he is versed in multiple styles and he plays with authenticity. He has a fantastic ability with his hands and most importantly he demonstrates love and joy for his passion for playing.”</p>
-      <cite>Lenny Kravitz</cite>
-      <small>declaração publicada pela Folha de Londrina</small>
-    </blockquote>
+    <h2 class="sr-only">O que Lenny Kravitz disse sobre ele</h2>
+    <figure data-reveal>
+      <blockquote>
+        <p lang="en">“What I love in Fernando’s bass performance is that he is versed in multiple styles and he plays with authenticity. He has a fantastic ability with his hands and most importantly he demonstrates love and joy for his passion for playing.”</p>
+      </blockquote>
+      <figcaption>Lenny Kravitz<small>declaração publicada pela Folha de Londrina</small></figcaption>
+    </figure>
   </div>
 </section>
 
@@ -803,24 +800,22 @@ html{scroll-behavior:smooth}
     <div class="booking__grid">
       <div data-reveal>
         <p class="eyebrow">Booking</p>
-        <h2>Leve esse groove pro seu palco.</h2>
-        <p class="booking__en" lang="en">Bring this groove to your stage.</p>
+        <h2>Quer ele no seu palco?</h2>
+        <p class="booking__en" lang="en">Want him on your stage?</p>
         <div class="booking__contato">
           <a class="btn btn--ambar btn--full" href="https://instagram.com/fernandorosabass" target="_blank" rel="noopener">Chamar no Instagram</a>
-          <!-- SUBSTITUIR pelos contatos reais assim que o Fernando passar. Troque
-               o bloco abaixo por:
-               <a class="btn btn--linha btn--full" href="mailto:BOOKING@DOMINIO">E-mail de booking</a>
-               <a class="btn btn--linha btn--full" href="https://wa.me/55DDDNUMERO" target="_blank" rel="noopener">WhatsApp</a> -->
+          <!-- SUBSTITUIR pelos contatos reais de booking. O markup pronto para
+               colar no lugar do paragrafo abaixo esta no README.md. -->
           <p class="slot-contato">A confirmar: e-mail e WhatsApp de booking</p>
         </div>
       </div>
 
       <div data-reveal>
-        <ul class="booking__lista">
-          <li><b>01</b><span>Show solo BLACKOUT<i>o show dele, do começo ao fim</i></span></li>
-          <li><b>02</b><span>Participação<i>presença de baixo em show, evento ou festival</i></span></li>
-          <li><b>03</b><span>Gravação<i>baixo em estúdio ou remoto</i></span></li>
-        </ul>
+        <ol class="booking__lista">
+          <li><span class="booking__nome">Show solo BLACKOUT</span><span class="booking__desc">a noite inteira é dele</span></li>
+          <li><span class="booking__nome">Participação</span><span class="booking__desc">baixo em show, evento ou festival</span></li>
+          <li><span class="booking__nome">Gravação</span><span class="booking__desc">baixo em estúdio ou remoto</span></li>
+        </ol>
         <!-- VALIDAR: os tres formatos acima precisam do aval do artista. -->
       </div>
     </div>
@@ -847,23 +842,23 @@ html{scroll-behavior:smooth}
 <footer class="rodape">
   <div class="wrap">
     <div class="rodape__grid">
-      <div class="rodape__col" data-reveal>
-        <b>Instagram</b>
-        <a href="https://instagram.com/fernandorosabass" target="_blank" rel="noopener">@fernandorosabass</a>
-      </div>
-      <div class="rodape__col">
-        <b>Booking</b>
-        <span class="mono" style="font-size:12.5px">A confirmar: e-mail e WhatsApp</span>
-      </div>
-      <div class="rodape__col">
-        <b>Fotografia</b>
+      <dl class="rodape__col" data-reveal>
+        <dt>Instagram</dt>
+        <dd><a href="https://instagram.com/fernandorosabass" target="_blank" rel="noopener">@fernandorosabass</a></dd>
+      </dl>
+      <dl class="rodape__col">
+        <dt>Booking</dt>
+        <dd><span class="mono" style="font-size:12.5px">A confirmar: e-mail e WhatsApp</span></dd>
+      </dl>
+      <dl class="rodape__col">
+        <dt>Fotografia</dt>
         <!-- VALIDAR: autorização de uso de cada foto e a forma do crédito.
              Fotos de show do BLACKOUT: @marques_alessandra (ainda não aplicadas). -->
-        <span style="font-size:13px">Marcos Hermes · divulgação Ernie&nbsp;Ball Music&nbsp;Man<br><span class="mono" style="font-size:11px">retrato de estúdio: crédito a confirmar</span></span>
-      </div>
+        <dd><span style="font-size:13px">Marcos Hermes · divulgação Ernie&nbsp;Ball Music&nbsp;Man<br><span class="mono" style="font-size:11px">retrato de estúdio: crédito a confirmar</span></span></dd>
+      </dl>
     </div>
     <div class="rodape__fim">
-      <span>© <span id="ano">2026</span> Fernando Rosa. Todos os direitos reservados.</span>
+      <span>© <span id="ano">2026</span> Fernando Rosa</span>
       <a href="https://www.instagram.com/baruc.amare/" target="_blank" rel="noopener" class="site-credit">feito por @baruc.amare</a>
     </div>
   </div>
@@ -1147,11 +1142,11 @@ if(passados.length){
     box.hidden = false;
     document.getElementById('passadosLista').innerHTML = passados.map(function(s){
       var p = s.data.split('-');
-      return '<div class="passado"><span class="passado__data">'+p[2]+' '+MESES[parseInt(p[1],10)-1]+' '+p[0]+'</span>'
+      return '<li class="passado"><span class="passado__data">'+p[2]+' '+MESES[parseInt(p[1],10)-1]+' '+p[0]+'</span>'
         + '<span class="passado__nome">'+esc(s.nome)+'</span>'
         + '<span class="passado__local">'+esc(local(s))+'</span>'
         + (s.link ? '<a href="'+esc(s.link)+'" target="_blank" rel="noopener">página do evento</a>' : '')
-        + '</div>';
+        + '</li>';
     }).join('');
   }
 }

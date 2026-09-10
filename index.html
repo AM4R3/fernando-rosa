@@ -298,6 +298,7 @@ section{position:relative}
    06 · SEÇÕES / BLOCOS
    ========================================================================== */
 .bloco{padding:clamp(74px,11vw,132px) 0}
+.bloco,.faixa-foto,.marcas,.depo,.rodape{content-visibility:auto;contain-intrinsic-size:auto 900px}
 .bloco--roxo{background:linear-gradient(180deg,var(--palco),#1B1424 40%,var(--palco))}
 
 /* --- AGENDA ---------------------------------------------------------- */
@@ -540,7 +541,7 @@ section{position:relative}
 }
 
 /* animacao so roda enquanto o bloco esta na tela */
-[data-anim].fora,[data-anim].fora *{animation-play-state:paused}
+.fora .corda,.fora .hero__refletor,.fora .hero__bruma,.fora .marcas__pista,.fora .btn--ingresso::after,.fora .poster__badge::after{animation-play-state:paused}
 
 /* ==========================================================================
    08 · MOVIMENTO REDUZIDO

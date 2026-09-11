@@ -27,7 +27,7 @@ O resto do site se ajusta sozinho a partir daí:
 - o show que já passou desce sozinho para a faixa "Já aconteceu";
 - o `Event` do Schema.org é gerado com data, local e link.
 
-**Sem link de ingresso** os botões dizem "Ser avisado da venda" e vão para o Instagram: eles nunca
+**Sem link de ingresso** os botões dizem "Venda em breve" e vão para o Instagram: eles nunca
 prometem ingresso sem ter onde vender.
 
 **Data escrita errado** (mês 13, 31/02, formato trocado) é ignorada e avisada no console, em vez de

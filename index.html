@@ -86,27 +86,45 @@ section{position:relative}
    01 · AS 4 CORDAS  (E · A · D · G) — assinatura visual do site
    ========================================================================== */
 .cordas{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:1}
-.corda{
-  position:absolute;left:0;right:0;height:1px;transform-origin:center;
-  background:linear-gradient(90deg,transparent 0%,rgba(244,239,231,.35) 8%,rgba(242,160,61,.85) 50%,rgba(244,239,231,.35) 92%,transparent 100%);
+.cordas__svg{position:absolute;inset:0;width:100%;height:100%}
+.corda-p{
+  fill:none;stroke-linecap:round;
+  transform-box:fill-box;transform-origin:center;
   animation:corda-vibra var(--dur) ease-in-out infinite;
 }
-.corda::before{
-  content:var(--nota);position:absolute;left:9px;top:50%;transform:translateY(-50%);
-  font-family:ui-monospace,Menlo,Consolas,monospace;font-size:10px;letter-spacing:.2em;
-  color:var(--mudo);opacity:.85;
-}
-.hero .corda:nth-child(1){top:30%;height:2.5px;--amp:2px;--dur:2.7s;--nota:'E';opacity:.85}
-.hero .corda:nth-child(2){top:44%;height:1.9px;--amp:1.6px;--dur:2.05s;--nota:'A';opacity:.75}
-.hero .corda:nth-child(3){top:59%;height:1.4px;--amp:1.2px;--dur:1.5s;--nota:'D';opacity:.65}
-.hero .corda:nth-child(4){top:73%;height:1px;--amp:.8px;--dur:1.1s;--nota:'G';opacity:.55}
+.hero .corda-p:nth-child(1){--amp:2px;--dur:2.7s}
+.hero .corda-p:nth-child(2){--amp:1.6px;--dur:2.05s}
+.hero .corda-p:nth-child(3){--amp:1.2px;--dur:1.5s}
+.hero .corda-p:nth-child(4){--amp:.8px;--dur:1.1s}
+/* divisor: 1000 unidades do viewBox cabem em 74px, entao a amplitude sobe */
+.divisor .corda-p:nth-child(1){--amp:16px;--dur:3.1s}
+.divisor .corda-p:nth-child(2){--amp:13px;--dur:2.3s}
+.divisor .corda-p:nth-child(3){--amp:10px;--dur:1.7s}
+.divisor .corda-p:nth-child(4){--amp:8px;--dur:1.25s}
+.divisor{position:relative;height:74px;margin:0;touch-action:pan-y}
 
-/* divisor: as mesmas 4 cordas, usadas com parcimônia entre blocos */
-.divisor{position:relative;height:74px;margin:0}
-.divisor .corda:nth-child(1){top:26%;height:2px;--amp:1.4px;--dur:3.1s;--nota:'';opacity:.6}
-.divisor .corda:nth-child(2){top:42%;height:1.5px;--amp:1.1px;--dur:2.3s;--nota:'';opacity:.5}
-.divisor .corda:nth-child(3){top:58%;height:1.2px;--amp:.9px;--dur:1.7s;--nota:'';opacity:.4}
-.divisor .corda:nth-child(4){top:74%;height:1px;--amp:.6px;--dur:1.25s;--nota:'';opacity:.32}
+/* botoes E A D G: cada um toca a corda dele (e da acesso por teclado ao brinquedo) */
+.notas{position:absolute;left:10px;top:0;bottom:0;z-index:4;display:none}
+.nota{
+  position:absolute;left:0;width:34px;height:34px;margin-top:-17px;border-radius:50%;
+  border:1px solid var(--linha-forte);background:rgba(18,14,22,.72);color:var(--mudo);
+  font:600 11px/1 ui-monospace,Menlo,Consolas,monospace;letter-spacing:.04em;cursor:pointer;
+  transition:background .2s ease,color .2s ease,border-color .2s ease,transform .12s ease;
+}
+.nota:hover,.nota.soa{background:var(--ambar);border-color:var(--ambar);color:var(--tinta)}
+.nota:active{transform:scale(.92)}
+@media (min-width:1100px){.notas{display:block}}
+
+/* a nota que sobe de onde a corda foi tocada */
+.nota-voa{
+  position:absolute;z-index:5;pointer-events:none;
+  font:800 14px/1 'Unbounded',sans-serif;color:var(--ambar);letter-spacing:-.01em;
+  animation:nota-sobe .9s cubic-bezier(.2,.8,.3,1) forwards;
+}
+@keyframes nota-sobe{
+  from{opacity:1;transform:translate(-50%,-50%) scale(.8)}
+  to{opacity:0;transform:translate(-50%,-240%) scale(1.15)}
+}
 
 @keyframes corda-vibra{
   0%,100%{transform:translateY(calc(var(--amp) * -1)) scaleY(1)}
@@ -226,6 +244,13 @@ section{position:relative}
 }
 .hero__sub b{font-weight:600}
 .hero__acoes{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.hero__dica{
+  display:flex;align-items:center;gap:10px;margin-top:22px;
+  font-family:ui-monospace,Menlo,Consolas,monospace;font-size:12px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--mudo);
+}
+.hero__dica-ponto{width:7px;height:7px;border-radius:50%;background:var(--ambar);flex-shrink:0;animation:dica-pulsa 1.6s ease-in-out infinite}
+@keyframes dica-pulsa{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.6);opacity:.45}}
 .hero__contagem{
   margin-top:26px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:12px;
   letter-spacing:.2em;text-transform:uppercase;color:var(--mudo);
@@ -315,7 +340,9 @@ section{position:relative}
   border:1px solid var(--linha);border-radius:3px;
   box-shadow:0 22px 50px -34px #000;
   transform:rotate(var(--rot,0deg));
+  transition:transform .45s cubic-bezier(.3,1.7,.5,1),box-shadow .3s ease;
 }
+.poster:hover{transform:rotate(calc(var(--rot,0deg) * -2.4)) translateY(-5px)}
 .poster:nth-child(odd){--rot:-.45deg;margin-right:clamp(0px,2vw,26px)}
 .poster:nth-child(even){--rot:.35deg;margin-left:clamp(0px,3vw,44px)}
 .poster--destaque{
@@ -343,7 +370,7 @@ section{position:relative}
   to{opacity:1;transform:translateY(0) rotate(var(--rot,0deg))}
 }
 .js .poster[data-reveal].is-visible{
-  animation:entra-poster .72s cubic-bezier(.16,1,.3,1) both;
+  animation:entra-poster .72s cubic-bezier(.16,1,.3,1) backwards;
   animation-delay:var(--d,0s);
 }
 @keyframes badge-pisca{
@@ -355,7 +382,8 @@ section{position:relative}
 .poster__acao{display:flex;flex-direction:column;align-items:flex-end;gap:9px;text-align:right}
 .poster__falta{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--mudo)}
 .poster--tba{background:linear-gradient(140deg,#241A31,#1C1427);border-style:dashed;border-color:var(--linha-forte)}
-.poster--tba .poster__dia{font-size:clamp(2.1rem,5.4vw,2.9rem);color:var(--mudo)}
+@keyframes neon{0%,86%,90%,94%,100%{opacity:1}88%,92%{opacity:.25}}
+.poster--tba .poster__dia{animation:neon 5.5s linear infinite;font-size:clamp(2.1rem,5.4vw,2.9rem);color:var(--mudo)}
 .poster--tba .poster__mes{color:var(--mudo);line-height:1.3;max-width:12ch}
 
 .passados{margin-top:52px;padding-top:30px;border-top:1px solid var(--linha)}
@@ -408,6 +436,38 @@ section{position:relative}
 .sobre__grid{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:clamp(28px,5vw,72px);align-items:start}
 .sobre__texto p{font-size:clamp(1.02rem,2vw,1.16rem);max-width:52ch}
 .sobre__texto p:first-of-type{font-size:clamp(1.12rem,2.4vw,1.32rem);color:var(--claro)}
+/* a ficha e uma credencial de backstage pendurada no cordao */
+.credencial{
+  position:relative;max-width:420px;margin:62px 0 0;padding:0 0 18px;
+  background:linear-gradient(135deg,#FBF8F2 0%,#F4EFE7 55%,#EAE3D8 100%);color:#120E16;
+  border-radius:10px;box-shadow:0 26px 50px -24px #000,0 2px 0 rgba(255,255,255,.4) inset;
+  transform-origin:50% -40px;animation:pendulo 7s ease-in-out infinite;
+}
+.credencial:hover{animation-play-state:paused}
+.credencial::before{ /* o cordao */
+  content:'';position:absolute;left:50%;top:-62px;width:18px;height:52px;margin-left:-9px;
+  background:repeating-linear-gradient(0deg,#F2A03D 0 6px,#2A1E38 6px 12px);border-radius:3px 3px 0 0;
+}
+.credencial::after{ /* brilho do plastico */
+  content:'';position:absolute;inset:0;border-radius:10px;pointer-events:none;
+  background:linear-gradient(115deg,transparent 30%,rgba(255,255,255,.55) 45%,transparent 58%);
+}
+.credencial__topo{
+  position:relative;display:flex;align-items:center;justify-content:space-between;
+  padding:22px 22px 14px;border-radius:10px 10px 0 0;background:var(--ambar);color:var(--tinta);
+}
+.credencial__furo{position:absolute;left:50%;top:8px;width:34px;height:8px;margin-left:-17px;border-radius:6px;background:#120E16}
+.credencial__tipo{font:800 13px/1 'Unbounded',sans-serif;letter-spacing:.14em;text-transform:uppercase}
+.credencial__num{font:600 11px/1 ui-monospace,Menlo,Consolas,monospace;letter-spacing:.12em}
+.credencial__nome{margin:18px 22px 4px;font:800 22px/1.05 'Unbounded',sans-serif;letter-spacing:-.02em}
+/* a bio pinta o primeiro <p> de claro; aqui o fundo e claro, entao o nome volta a ser escuro */
+.sobre__texto .credencial__nome{color:#120E16;font-size:22px;max-width:none}
+.credencial .ficha{margin:10px 22px 0;border-top:1px solid rgba(18,14,22,.16)}
+.credencial .ficha div{border-bottom-color:rgba(18,14,22,.16)}
+.credencial .ficha dt{color:#5B4E6B;flex-basis:118px}
+.credencial .ficha dd{color:#120E16;font-size:14.5px}
+.credencial__barra{height:28px;margin:16px 22px 0;background:repeating-linear-gradient(90deg,#120E16 0 2px,transparent 2px 4px,#120E16 4px 5px,transparent 5px 9px,#120E16 9px 12px,transparent 12px 14px)}
+@keyframes pendulo{0%,100%{transform:rotate(-1.6deg)}50%{transform:rotate(1.1deg)}}
 .ficha{margin:34px 0 0;border-top:1px solid var(--linha)}
 .ficha div{display:flex;gap:18px;padding:12px 0;border-bottom:1px solid var(--linha)}
 .ficha dt{flex:0 0 158px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--mudo);padding-top:4px}
@@ -441,6 +501,13 @@ a.faixa{text-decoration:none;overflow:hidden}
 .faixa:hover .faixa__capa{opacity:.7}
 .faixa>*:not(.faixa__capa){position:relative;z-index:1}
 .faixa__info{font-size:14px;color:var(--claro);opacity:.85}
+.eq{display:inline-flex;align-items:flex-end;gap:3px;height:14px;margin-left:10px;vertical-align:middle}
+.eq span{display:block;width:3px;height:100%;background:var(--ambar);transform-origin:bottom;transform:scaleY(.25)}
+.faixa:hover .eq span,.faixa:focus-visible .eq span{animation:eq-sobe .5s ease-in-out infinite alternate}
+.eq span:nth-child(2){animation-delay:.15s !important;animation-duration:.4s !important}
+.eq span:nth-child(3){animation-delay:.3s !important;animation-duration:.6s !important}
+.eq span:nth-child(4){animation-delay:.08s !important;animation-duration:.45s !important}
+@keyframes eq-sobe{from{transform:scaleY(.2)}to{transform:scaleY(1)}}
 .faixa--grande{grid-row:span 2;min-height:380px;background:linear-gradient(150deg,#3A2653,#1E1629 70%)}
 .faixa__num{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:10.5px;letter-spacing:.24em;color:var(--mudo)}
 .faixa__nome{margin:0;font-family:'Unbounded',sans-serif;font-weight:600;font-size:clamp(1.1rem,2.6vw,1.5rem);letter-spacing:-.015em}
@@ -457,6 +524,8 @@ a.faixa{text-decoration:none;overflow:hidden}
   font-family:'Unbounded',sans-serif;font-weight:600;font-size:clamp(1.05rem,2.6vw,1.7rem);
   letter-spacing:-.01em;color:var(--claro);opacity:.78;padding:0 clamp(20px,3.4vw,42px);white-space:nowrap;
 }
+.marcas__set span:not(.marcas__ponto){display:inline-block;transition:transform .3s cubic-bezier(.3,1.8,.5,1),opacity .2s ease}
+.marcas__set span:not(.marcas__ponto):hover{transform:translateY(-7px) rotate(-3deg);opacity:1}
 .marcas__set .marcas__ponto{display:block;width:5px;height:5px;padding:0;border-radius:50%;background:var(--ambar);opacity:.7;flex-shrink:0}
 @keyframes marquee-marcas{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
@@ -518,8 +587,6 @@ a.faixa{text-decoration:none;overflow:hidden}
   .nav__toggle{display:inline-flex;align-items:center}
   .nav .btn--ambar{display:none}
   .hero{align-items:flex-end;padding-top:calc(var(--nav-h) + 70px)}
-  .hero .corda::before{display:none}
-  .hero .corda{left:0;right:0}
   .musica__grid{grid-template-columns:1fr}
   .ph--turne{aspect-ratio:5/4}
   .blackout{grid-template-columns:1fr;gap:26px}
@@ -546,7 +613,7 @@ a.faixa{text-decoration:none;overflow:hidden}
 }
 
 /* animacao so roda enquanto o bloco esta na tela */
-.fora .corda,.fora .hero__refletor,.fora .hero__bruma,.fora .marcas__pista,.fora .btn--ingresso::after,.fora .poster__badge::after{animation-play-state:paused}
+.fora .corda-p,.fora .hero__refletor,.fora .hero__bruma,.fora .marcas__pista,.fora .btn--ingresso::after,.fora .poster__badge::after{animation-play-state:paused}
 
 /* ==========================================================================
    08 · MOVIMENTO REDUZIDO
@@ -556,7 +623,7 @@ a.faixa{text-decoration:none;overflow:hidden}
     animation-duration:.001ms !important;animation-iteration-count:1 !important;
     transition-duration:.16s !important;scroll-behavior:auto !important;
   }
-  .corda{animation:none;transform:none}
+  .corda-p{animation:none;transform:none}
   .hero__refletor,.hero__bruma{animation:none;opacity:.7}
   .marcas__pista{animation:none;width:100%;justify-content:flex-start;flex-wrap:wrap}
   .marcas__set{flex-wrap:wrap;justify-content:center}
@@ -604,10 +671,22 @@ html{scroll-behavior:smooth}
   <div class="hero__bruma" aria-hidden="true"></div>
   <div class="hero__refletor" aria-hidden="true"></div>
   <div class="cordas" aria-hidden="true">
-    <div class="corda"></div>
-    <div class="corda"></div>
-    <div class="corda"></div>
-    <div class="corda"></div>
+    <svg class="cordas__svg" viewBox="0 0 1000 1000" preserveAspectRatio="none" focusable="false">
+      <defs><linearGradient id="gCordaHero" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="1000" y2="0">
+        <stop offset="0" stop-color="#F4EFE7" stop-opacity="0"/><stop offset=".08" stop-color="#F4EFE7" stop-opacity=".35"/>
+        <stop offset=".5" stop-color="#F2A03D" stop-opacity=".9"/><stop offset=".92" stop-color="#F4EFE7" stop-opacity=".35"/>
+        <stop offset="1" stop-color="#F4EFE7" stop-opacity="0"/></linearGradient></defs>
+      <path class="corda-p" vector-effect="non-scaling-stroke" data-y="300" d="M0 300 Q500 300 1000 300" stroke="url(#gCordaHero)" stroke-width="2.5" opacity="0.85"/>
+      <path class="corda-p" vector-effect="non-scaling-stroke" data-y="440" d="M0 440 Q500 440 1000 440" stroke="url(#gCordaHero)" stroke-width="1.9" opacity="0.75"/>
+      <path class="corda-p" vector-effect="non-scaling-stroke" data-y="590" d="M0 590 Q500 590 1000 590" stroke="url(#gCordaHero)" stroke-width="1.4" opacity="0.65"/>
+      <path class="corda-p" vector-effect="non-scaling-stroke" data-y="730" d="M0 730 Q500 730 1000 730" stroke="url(#gCordaHero)" stroke-width="1" opacity="0.55"/>
+    </svg>
+  </div>
+  <div class="notas" role="group" aria-label="Cordas do baixo">
+    <button type="button" class="nota" data-corda="0" style="top:30%" aria-label="Tocar a corda mi">E</button>
+    <button type="button" class="nota" data-corda="1" style="top:44%" aria-label="Tocar a corda lá">A</button>
+    <button type="button" class="nota" data-corda="2" style="top:59%" aria-label="Tocar a corda ré">D</button>
+    <button type="button" class="nota" data-corda="3" style="top:73%" aria-label="Tocar a corda sol">G</button>
   </div>
   <div class="hero__grao" aria-hidden="true"></div>
 
@@ -618,6 +697,7 @@ html{scroll-behavior:smooth}
       <a class="btn btn--ambar btn--ingresso" id="heroCta" href="#shows">Ver a agenda</a>
       <a class="btn btn--linha" href="#booking">Booking</a>
     </div>
+    <p class="hero__dica entrada" aria-hidden="true"><span class="hero__dica-ponto"></span>Toque nas cordas: mi, lá, ré e sol</p>
     <p class="hero__contagem entrada" id="heroContagem"></p>
   </div>
 </section>
@@ -660,7 +740,16 @@ html{scroll-behavior:smooth}
 <!-- divisor de cordas (usado só nas viradas que importam) -->
 <div class="divisor" aria-hidden="true" data-anim>
   <div class="cordas">
-    <div class="corda"></div><div class="corda"></div><div class="corda"></div><div class="corda"></div>
+    <svg class="cordas__svg" viewBox="0 0 1000 1000" preserveAspectRatio="none" focusable="false">
+      <defs><linearGradient id="gCordaDiv1" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="1000" y2="0">
+        <stop offset="0" stop-color="#F4EFE7" stop-opacity="0"/><stop offset=".08" stop-color="#F4EFE7" stop-opacity=".35"/>
+        <stop offset=".5" stop-color="#F2A03D" stop-opacity=".9"/><stop offset=".92" stop-color="#F4EFE7" stop-opacity=".35"/>
+        <stop offset="1" stop-color="#F4EFE7" stop-opacity="0"/></linearGradient></defs>
+      <path class="corda-p" vector-effect="non-scaling-stroke" data-y="260" d="M0 260 Q500 260 1000 260" stroke="url(#gCordaDiv1)" stroke-width="2" opacity="0.6"/>
+      <path class="corda-p" vector-effect="non-scaling-stroke" data-y="420" d="M0 420 Q500 420 1000 420" stroke="url(#gCordaDiv1)" stroke-width="1.5" opacity="0.5"/>
+      <path class="corda-p" vector-effect="non-scaling-stroke" data-y="580" d="M0 580 Q500 580 1000 580" stroke="url(#gCordaDiv1)" stroke-width="1.2" opacity="0.4"/>
+      <path class="corda-p" vector-effect="non-scaling-stroke" data-y="740" d="M0 740 Q500 740 1000 740" stroke="url(#gCordaDiv1)" stroke-width="1" opacity="0.32"/>
+    </svg>
   </div>
 </div>
 
@@ -695,14 +784,19 @@ html{scroll-behavior:smooth}
         <p>O primeiro contato com Lenny Kravitz foi um convite para tocar. Fernando foi a Los Angeles, depois às Bahamas para ensaiar, e fez vários shows com ele, entre eles o iHeartRadio Music Festival de 2023, em Las Vegas, onde tocaram <cite lang="en">It Ain’t Over ’Til It’s Over</cite>.</p>
         <p>Em junho de 2025 levou o projeto Funk Ship ao Blue Note São Paulo, de novo com Derrick McKenzie. O show solo dele é o BLACKOUT.</p>
 
+        <div class="credencial">
+          <div class="credencial__topo"><span class="credencial__furo" aria-hidden="true"></span><span class="credencial__tipo">Backstage</span><span class="credencial__num" aria-hidden="true">Nº 001</span></div>
+          <p class="credencial__nome">Fernando Rosa</p>
         <dl class="ficha">
-          <div><dt>Instrumento</dt><dd>Baixo</dd></div>
-          <div><dt>Origem</dt><dd>Itaquera, São Paulo</dd></div>
-          <div><dt>Começou</dt><dd>Aos 8 anos</dd></div>
-          <div><dt>Tocou com</dt><dd>Lenny Kravitz, Ed Motta, Derrick McKenzie</dd></div>
-          <div><dt>Projetos</dt><dd>BLACKOUT, ALIVE, Funk Ship</dd></div>
-          <div><dt>Pessoal</dt><dd>Vegano</dd></div>
-        </dl>
+            <div><dt>Instrumento</dt><dd>Baixo</dd></div>
+            <div><dt>Origem</dt><dd>Itaquera, São Paulo</dd></div>
+            <div><dt>Começou</dt><dd>Aos 8 anos</dd></div>
+            <div><dt>Tocou com</dt><dd>Lenny Kravitz, Ed Motta, Derrick McKenzie</dd></div>
+            <div><dt>Projetos</dt><dd>BLACKOUT, ALIVE, Funk Ship</dd></div>
+            <div><dt>Pessoal</dt><dd>Vegano</dd></div>
+          </dl>
+          <div class="credencial__barra" aria-hidden="true"></div>
+        </div>
 
         <!-- Tudo acima veio de fonte pública aberta e conferida: Bass Magazine,
              No Treble, Ernie Ball Music Man, Rolling Stone Brasil, Terra.
@@ -742,20 +836,20 @@ html{scroll-behavior:smooth}
         <span class="faixa__num">01</span>
         <h3 class="faixa__nome">Com Lenny Kravitz</h3>
         <span class="faixa__info">iHeartRadio Music Festival, Las Vegas, 2023</span>
-        <span class="faixa__slot">Assistir no YouTube</span>
+        <span class="faixa__slot">Assistir no YouTube<span class="eq" aria-hidden="true"><span></span><span></span><span></span><span></span></span></span>
       </a>
       <a class="faixa" data-reveal href="https://www.youtube.com/watch?v=pQz9D-EAvMw" target="_blank" rel="noopener">
         <img class="faixa__capa" src="img/video-jazzcafe.webp" alt="" width="480" height="270" loading="lazy" decoding="async">
         <span class="faixa__num">02</span>
         <h3 class="faixa__nome">Jazz Cafe, Londres</h3>
         <span class="faixa__info">com Derrick McKenzie, 2022</span>
-        <span class="faixa__slot">Assistir no YouTube</span>
+        <span class="faixa__slot">Assistir no YouTube<span class="eq" aria-hidden="true"><span></span><span></span><span></span><span></span></span></span>
       </a>
       <a class="faixa" data-reveal href="https://www.youtube.com/@FernandoRosaBass" target="_blank" rel="noopener">
         <span class="faixa__num">03</span>
         <h3 class="faixa__nome">Covers</h3>
         <span class="faixa__info">funk, soul e disco, gravados em casa</span>
-        <span class="faixa__slot">Canal no YouTube</span>
+        <span class="faixa__slot">Canal no YouTube<span class="eq" aria-hidden="true"><span></span><span></span><span></span><span></span></span></span>
       </a>
     </div>
   </div>
@@ -764,7 +858,16 @@ html{scroll-behavior:smooth}
 <!-- divisor de cordas -->
 <div class="divisor" aria-hidden="true" data-anim>
   <div class="cordas">
-    <div class="corda"></div><div class="corda"></div><div class="corda"></div><div class="corda"></div>
+    <svg class="cordas__svg" viewBox="0 0 1000 1000" preserveAspectRatio="none" focusable="false">
+      <defs><linearGradient id="gCordaDiv2" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="1000" y2="0">
+        <stop offset="0" stop-color="#F4EFE7" stop-opacity="0"/><stop offset=".08" stop-color="#F4EFE7" stop-opacity=".35"/>
+        <stop offset=".5" stop-color="#F2A03D" stop-opacity=".9"/><stop offset=".92" stop-color="#F4EFE7" stop-opacity=".35"/>
+        <stop offset="1" stop-color="#F4EFE7" stop-opacity="0"/></linearGradient></defs>
+      <path class="corda-p" vector-effect="non-scaling-stroke" data-y="260" d="M0 260 Q500 260 1000 260" stroke="url(#gCordaDiv2)" stroke-width="2" opacity="0.6"/>
+      <path class="corda-p" vector-effect="non-scaling-stroke" data-y="420" d="M0 420 Q500 420 1000 420" stroke="url(#gCordaDiv2)" stroke-width="1.5" opacity="0.5"/>
+      <path class="corda-p" vector-effect="non-scaling-stroke" data-y="580" d="M0 580 Q500 580 1000 580" stroke="url(#gCordaDiv2)" stroke-width="1.2" opacity="0.4"/>
+      <path class="corda-p" vector-effect="non-scaling-stroke" data-y="740" d="M0 740 Q500 740 1000 740" stroke="url(#gCordaDiv2)" stroke-width="1" opacity="0.32"/>
+    </svg>
   </div>
 </div>
 
@@ -1257,5 +1360,167 @@ if(typeof window.revelar === 'function') window.revelar();
 })();
 </script>
 
+<!-- ==========================================================================
+     SCRIPT 3 · AS CORDAS TOCAM
+     Clique ou toque numa corda: ela vibra em curva e soa a nota real do baixo
+     (afinacao padrao E1 A1 D2 G2), sintetizada na hora por Karplus-Strong.
+     Passar o mouse sem clicar so faz a corda balancar, sem som.
+     ========================================================================== -->
+<script>
+(function(){
+'use strict';
+var reduz = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+var FREQ = [41.20, 55.00, 73.42, 98.00];
+var NOME = ['mi', 'lá', 'ré', 'sol'];
+var VIS  = [7, 8.5, 10, 12];               /* frequencia do balanco na tela, em Hz */
+
+/* ---- som ---------------------------------------------------------------- */
+var ctx = null, bufs = [], saida = null;
+function ks(freq){
+  var sr = ctx.sampleRate, dur = 2.8, len = Math.floor(sr * dur);
+  var N = Math.max(2, Math.round(sr / freq));
+  var dec = Math.pow(0.08, 1 / (freq * 2.4));      /* cai ~22 dB em 2,4 s */
+  var b = ctx.createBuffer(1, len, sr), d = b.getChannelData(0);
+  var r = new Float32Array(N), k, p;
+  for(k = 0; k < N; k++) r[k] = Math.random() * 2 - 1;
+  for(p = 0; p < 4; p++) for(k = 0; k < N; k++) r[k] = (r[k] + r[(k + 1) % N]) * 0.5; /* dedo, nao palheta */
+  var i = 0, pico = 0;
+  for(var n = 0; n < len; n++){
+    var a = r[i], nx = (i + 1) % N;
+    d[n] = a; r[i] = (a + r[nx]) * 0.5 * dec; i = nx;
+    if(Math.abs(a) > pico) pico = Math.abs(a);
+  }
+  var g = pico ? 0.85 / pico : 1, fade = Math.floor(sr * 0.25);
+  for(n = 0; n < len; n++){ d[n] *= g; if(n > len - fade) d[n] *= (len - n) / fade; }
+  return b;
+}
+function liga(){
+  if(ctx) return ctx;
+  var AC = window.AudioContext || window.webkitAudioContext;
+  if(!AC) return null;
+  try{
+    ctx = new AC();
+    var lp = ctx.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = 2400; lp.Q.value = 0.5;
+    var comp = ctx.createDynamicsCompressor(); comp.threshold.value = -16; comp.ratio.value = 4;
+    saida = ctx.createGain(); saida.gain.value = 0.9;
+    saida.connect(lp); lp.connect(comp); comp.connect(ctx.destination);
+    for(var i = 0; i < FREQ.length; i++) bufs[i] = ks(FREQ[i]);
+  }catch(e){ ctx = null; }
+  return ctx;
+}
+function soa(i, vel){
+  if(!liga()) return;
+  if(ctx.state === 'suspended') ctx.resume();
+  var src = ctx.createBufferSource(), g = ctx.createGain();
+  src.buffer = bufs[i];
+  g.gain.value = Math.min(1, 0.35 + vel * 0.65);
+  src.connect(g); g.connect(saida); src.start();
+}
+
+/* ---- as cordas na tela --------------------------------------------------- */
+var grupos = [];
+var alvos = document.querySelectorAll('.hero, .divisor');
+for(var a = 0; a < alvos.length; a++){
+  var el = alvos[a], paths = el.querySelectorAll('.corda-p');
+  if(paths.length !== 4) continue;
+  var gr = { el: el, cordas: [], ultY: null, ultT: 0, hero: el.classList.contains('hero') };
+  for(var c = 0; c < 4; c++){
+    gr.cordas.push({ p: paths[c], y: +paths[c].getAttribute('data-y'), i: c, amp: 0, t0: 0, x: 500 });
+  }
+  grupos.push(gr);
+}
+if(!grupos.length) return;
+
+var rodando = false;
+function reta(k){ return 'M0 ' + k.y + ' Q500 ' + k.y + ' 1000 ' + k.y; }
+function quadro(t){
+  var algum = false;
+  for(var g = 0; g < grupos.length; g++){
+    var cs = grupos[g].cordas;
+    for(var i = 0; i < 4; i++){
+      var k = cs[i];
+      if(!k.amp) continue;
+      var dt = (t - k.t0) / 1000, env = Math.exp(-dt * 2.4);
+      if(env < 0.015){ k.amp = 0; k.p.setAttribute('d', reta(k)); continue; }
+      algum = true;
+      var desl = k.amp * env * Math.cos(2 * Math.PI * VIS[i] * dt) * 2;
+      k.p.setAttribute('d', 'M0 ' + k.y + ' Q' + k.x.toFixed(1) + ' ' + (k.y + desl).toFixed(1) + ' 1000 ' + k.y);
+    }
+  }
+  if(algum) requestAnimationFrame(quadro); else rodando = false;
+}
+function voa(gr, k, xPct){
+  var s = document.createElement('span');
+  s.className = 'nota-voa';
+  s.textContent = NOME[k.i];
+  s.style.left = xPct + '%';
+  s.style.top = (k.y / 10) + '%';
+  gr.el.appendChild(s);
+  setTimeout(function(){ if(s.parentNode) s.parentNode.removeChild(s); }, 950);
+}
+function tange(gr, k, x, vel, comSom){
+  var h = gr.el.getBoundingClientRect().height || 1;
+  var px = gr.hero ? 8 + vel * 22 : 4 + vel * 6;       /* amplitude em pixels na tela */
+  k.x = x; k.amp = Math.max(k.amp * 0.4, px * 1000 / h); k.t0 = performance.now();
+  if(!reduz && !rodando){ rodando = true; requestAnimationFrame(quadro); }
+  if(comSom){
+    soa(k.i, vel);
+    voa(gr, k, x / 10);
+    if(gr.hero){
+      var b = document.querySelector('.nota[data-corda="' + k.i + '"]');
+      if(b){ b.classList.add('soa'); setTimeout(function(){ b.classList.remove('soa'); }, 260); }
+    }
+  }
+}
+function interativo(t){ return t.closest && t.closest('a, button, input, textarea, select, label'); }
+
+grupos.forEach(function(gr){
+  function pos(e){
+    var r = gr.el.getBoundingClientRect();
+    return { x: (e.clientX - r.left) / r.width * 1000, y: (e.clientY - r.top) / r.height * 1000, h: r.height };
+  }
+  function perto(p){
+    var tol = 20 * 1000 / p.h, melhor = null, dist = tol;
+    for(var i = 0; i < 4; i++){
+      var d = Math.abs(p.y - gr.cordas[i].y);
+      if(d < dist){ dist = d; melhor = gr.cordas[i]; }
+    }
+    return melhor;
+  }
+  gr.el.addEventListener('pointerdown', function(e){
+    if(interativo(e.target)) return;
+    var p = pos(e), k = perto(p);
+    if(k) tange(gr, k, p.x, 0.75, true);
+    gr.ultY = p.y; gr.ultT = e.timeStamp;
+  });
+  gr.el.addEventListener('pointermove', function(e){
+    var p = pos(e);
+    if(e.pointerType === 'mouse') gr.el.style.cursor = (perto(p) && !interativo(e.target)) ? 'pointer' : '';
+    if(gr.ultY !== null){
+      var lo = Math.min(gr.ultY, p.y), hi = Math.max(gr.ultY, p.y);
+      var vel = Math.min(1, Math.abs(p.y - gr.ultY) * p.h / 1000 / Math.max(1, e.timeStamp - gr.ultT) / 1.4);
+      var arrastando = e.pointerType === 'mouse' && (e.buttons & 1);
+      for(var i = 0; i < 4; i++){
+        var k = gr.cordas[i];
+        if(k.y > lo && k.y <= hi) tange(gr, k, p.x, arrastando ? Math.max(0.5, vel) : 0.15 + vel * 0.35, arrastando);
+      }
+    }
+    gr.ultY = p.y; gr.ultT = e.timeStamp;
+  });
+  gr.el.addEventListener('pointerleave', function(){ gr.ultY = null; gr.el.style.cursor = ''; });
+});
+
+/* botoes E A D G: teclado e leitor de tela chegam no brinquedo tambem */
+var hero = null;
+for(var g2 = 0; g2 < grupos.length; g2++) if(grupos[g2].hero) hero = grupos[g2];
+var bts = document.querySelectorAll('.nota[data-corda]');
+for(var b2 = 0; b2 < bts.length; b2++){
+  bts[b2].addEventListener('click', function(){
+    if(!hero) return;
+    tange(hero, hero.cordas[+this.getAttribute('data-corda')], 160, 0.8, true);
+  });
+}
+})();
+</script>
 </body>
 </html>
